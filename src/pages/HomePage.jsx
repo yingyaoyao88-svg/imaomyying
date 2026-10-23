@@ -588,13 +588,13 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
             <h1 className="bento-hero__title">
               {language === "zh" ? (
                 <>
-                  把 AI 落地成<strong>好玩、实用的产品</strong>，<br />
-                  用自媒体记录每一个从 0 到 1。
+                  把 AI 落地成 <span className="hero-highlighter">好玩、实用的产品</span>，<br />
+                  用自媒体记录每一个 <span className="hero-zero-to-one">从 0 到 1</span>。
                 </>
               ) : (
                 <>
-                  Building <strong>useful, playful AI products</strong>.<br />
-                  Documenting every zero-to-one journey.
+                  Building <span className="hero-highlighter">useful, playful AI products</span>.<br />
+                  Documenting every <span className="hero-zero-to-one">zero-to-one journey</span>.
                 </>
               )}
             </h1>
@@ -603,40 +603,37 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
               {pick(creatorBio.description, language)}
             </p>
 
-            {/* Quick Micro-stats Strip */}
-            <div className="hero-micro-strip">
-              <div className="micro-stat-item">
-                <span className="micro-stat-num">4 大</span>
-                <span className="micro-stat-label">自媒体矩阵</span>
+            {/* Quick Micro-stats Bento Strip (Gemini Canvas Neo-Brutalist Layout) */}
+            <div className="hero-bento-stats-grid">
+              <div className="hero-bento-stat hero-bento-stat--white">
+                <strong className="bento-stat-val">4 大阵地</strong>
+                <span className="bento-stat-lbl">{language === "zh" ? "全网「小A的AI日记」" : "Omni-channel Media"}</span>
               </div>
-              <div className="micro-stat-sep">/</div>
-              <div className="micro-stat-item">
-                <span className="micro-stat-num">100%</span>
-                <span className="micro-stat-label">独立实战构建</span>
+              <div className="hero-bento-stat hero-bento-stat--yellow">
+                <strong className="bento-stat-val">100% 实战</strong>
+                <span className="bento-stat-lbl">{language === "zh" ? "独立全栈开发开源" : "Independent Fullstack"}</span>
               </div>
-              <div className="micro-stat-sep">/</div>
-              <div className="micro-stat-item">
-                <span className="micro-stat-num">成人英语</span>
-                <span className="micro-stat-label">学习资源聚合</span>
+              <div className="hero-bento-stat hero-bento-stat--lavender">
+                <strong className="bento-stat-val">50+ 站点</strong>
+                <span className="bento-stat-lbl">{language === "zh" ? "成人英语分级导航" : "Curated English Hub"}</span>
               </div>
             </div>
 
             <div className="bento-hero__actions">
-              <a href="#projects" className="btn-bento btn-bento--primary">
-                <Sparkles size={16} />
-                <span>{copy.ctaPrimary}</span>
+              <a href="#projects" className="btn-bento btn-bento--primary neo-btn-primary">
+                <span>✦ {language === "zh" ? "探索实战作品集" : "Explore Featured Works"}</span>
+                <ArrowRight size={15} />
               </a>
-              <a href="#media" className="btn-bento btn-bento--secondary">
-                <Flame size={16} />
-                <span>{copy.ctaSecondary}</span>
+              <a href="#media" className="btn-bento btn-bento--secondary neo-btn-secondary">
+                <span>{language === "zh" ? "关注小A的AI日记" : "Follow Xiao-A's Diary"}</span>
               </a>
               <button
                 type="button"
-                className="btn-bento btn-bento--ghost"
+                className="btn-bento btn-bento--ghost neo-btn-ghost"
                 onClick={handleOpenQr}
               >
-                <QrCode size={16} />
-                <span>{language === "zh" ? "微信二维码: 15038098595" : "WeChat QR Code"}</span>
+                <QrCode size={15} />
+                <span>{language === "zh" ? "微信：15038098595" : "WeChat: 15038098595"}</span>
               </button>
             </div>
           </motion.article>
@@ -792,17 +789,25 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
 
               <div className="pass-meta-box neo-meta-box">
                 <div className="pass-meta-row">
-                  <span className="pass-meta-lbl">LOCATION</span>
-                  <span className="pass-meta-val">China · Remote</span>
+                  <span className="pass-meta-lbl">BASE // 坐标</span>
+                  <span className="pass-meta-val">China · Remote Builder</span>
                 </div>
                 <div className="pass-meta-row">
-                  <span className="pass-meta-lbl">CHANNELS</span>
+                  <span className="pass-meta-lbl">MATRIX // 矩阵</span>
                   <span className="pass-meta-val">小红书 / 公众号 / 视频号 / 抖音</span>
                 </div>
                 <div className="pass-meta-row">
-                  <span className="pass-meta-lbl">FOCUS</span>
-                  <span className="pass-meta-val text-success">● AI 英语资源 · 独立产品</span>
+                  <span className="pass-meta-lbl">FOCUS // 核心</span>
+                  <span className="pass-meta-val" style={{ color: "#10b981", fontWeight: 700 }}>
+                    ● 英语自学导航 & AI 工作流
+                  </span>
                 </div>
+              </div>
+
+              {/* Barcode & Connect Strip */}
+              <div className="pass-barcode-strip">
+                <span className="pass-barcode-lines">||| |||| || ||||</span>
+                <span className="pass-barcode-text">AOMYYING-2026-PASS</span>
               </div>
 
               <button
@@ -811,7 +816,7 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                 onClick={handleOpenQr}
               >
                 <QrCode size={14} />
-                <span>{language === "zh" ? "微信二维码: 扫码交个朋友" : "WeChat QR Code: 15038098595"}</span>
+                <span>{language === "zh" ? "扫码加小A微信" : "Scan to Add WeChat"}</span>
               </button>
             </motion.article>
           </div>
@@ -1333,38 +1338,57 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
 
           <div className="about-bento-grid">
             <motion.article
-              className="bento-card bento-card--philosophy"
+              className="bento-card bento-card--philosophy neo-manifesto-card"
               onMouseMove={handleCardMouseMove}
               {...fadeUp}
             >
-              <h3 className="about-block-title">
-                {language === "zh" ? "💡 我的创作与构建理念" : "💡 Philosophy"}
+              <div className="neo-sticker-badge neo-sticker-badge--yellow">
+                <span>EDITORIAL MANIFESTO // 关于小A</span>
+              </div>
+              <h3 className="about-block-title" style={{ marginTop: "12px" }}>
+                {language === "zh" ? "💡 为什么我同时做「独立开发」与「自媒体」？" : "💡 Why Build & Share in Public?"}
               </h3>
               <p>
                 {language === "zh"
-                  ? "我坚信：AI 最大的价值不在于生成宏大的空泛概念，而在于把哪怕最细微的一个日常摩擦点（如记不住的单词、复杂的自媒体封面制作、繁琐的公众号排版）彻底自动化和产品化。"
+                  ? "我坚信：AI 最大的价值不在于生成宏大的空泛概念，而在于把哪怕最细微的一个日常摩擦点（比如成人学英语找不到分级听力、做自媒体封面太耗时、公众号排版太繁琐）彻底自动化和产品化。"
                   : "I believe the greatest value of AI is not in abstract concepts, but in solving tangible frictions — whether streamlining vocabulary retention, generating high-CTR covers, or automating article publishing."}
               </p>
               <p>
                 {language === "zh"
-                  ? "通过小红书、公众号、视频号等自媒体，我把每一个真实的探索过程透明地分享出来。开源工具、交付产品、写下心得，与所有渴望用 AI 赋能自己的同路人一起成长。"
+                  ? "通过「小A的AI日记」，我把每一个真实的探索过程透明地分享出来。开源工具、交付产品、写下心得，与所有渴望用 AI 赋能自己的同路人一起进化。"
                   : "Through Xiaohongshu, WeChat, and video channels, I transparently document each experiment. Shipping tools, sharing insights, and growing alongside fellow creators and learners."}
               </p>
             </motion.article>
 
             <motion.article
-              className="bento-card bento-card--skills"
+              className="bento-card bento-card--skills neo-skills-wall"
               onMouseMove={handleCardMouseMove}
               {...fadeUp}
             >
-              <h3 className="about-block-title">
-                {language === "zh" ? "🛠️ 核心技能与工作流" : "🛠️ Core Superpowers"}
+              <div className="neo-sticker-badge neo-sticker-badge--orange">
+                <span>TECH & CREATIVE STACK // 技能贴纸墙</span>
+              </div>
+              <h3 className="about-block-title" style={{ marginTop: "12px", marginBottom: "16px" }}>
+                {language === "zh" ? "🛠️ 核心武器库与工作流" : "🛠️ Core Superpowers & Stack"}
               </h3>
-              <div className="skills-cloud">
-                {skillsList.map((skill) => (
-                  <div key={skill.name} className="skill-chip">
-                    <span className="skill-chip__cat">{skill.category}</span>
-                    <strong className="skill-chip__name">{skill.name}</strong>
+              <div className="neo-sticker-grid">
+                {[
+                  { cat: "AI 编程", name: "Claude Code / Cursor", bg: "#ffd600", text: "#111" },
+                  { cat: "智能体工作流", name: "Agent Skills & MCP", bg: "#ff5a26", text: "#fff" },
+                  { cat: "全栈开发", name: "Next.js / React / Tailwind", bg: "#10b981", text: "#fff" },
+                  { cat: "边缘架构", name: "Cloudflare D1 & Workers", bg: "#c4b5fd", text: "#111" },
+                  { cat: "提示词工程", name: "System Prompt 架构", bg: "#fde047", text: "#111" },
+                  { cat: "视觉生成", name: "AIGC 个人 IP 视觉流", bg: "#f472b6", text: "#111" },
+                  { cat: "知识管理", name: "Obsidian 自动化发布", bg: "#38bdf8", text: "#111" },
+                  { cat: "教育产品", name: "成人英语分级体系设计", bg: "#a3e635", text: "#111" },
+                ].map((s) => (
+                  <div
+                    key={s.name}
+                    className="neo-sticker-brick"
+                    style={{ backgroundColor: s.bg, color: s.text }}
+                  >
+                    <span className="neo-brick-cat">{s.cat}</span>
+                    <strong className="neo-brick-name">{s.name}</strong>
                   </div>
                 ))}
               </div>
