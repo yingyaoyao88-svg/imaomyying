@@ -21,6 +21,8 @@ import {
   EnglishHubShowcase,
   XiaoACoverShowcase,
   WeChatPublisherShowcase,
+  TeachingToolsShowcase,
+  PortfolioSiteShowcase,
 } from "../components/showcases";
 
 
@@ -153,6 +155,12 @@ export function ProjectDetailPage({ language }) {
           )}
           {project.slug === "obsidian-wechat-publisher" && (
             <WeChatPublisherShowcase language={language} />
+          )}
+          {(project.slug === "teaching-tools" || project.slug === "AomyYing-teaching-tools") && (
+            <TeachingToolsShowcase language={language} />
+          )}
+          {(project.slug === "portfolio-site" || project.slug === "imaomyying") && (
+            <PortfolioSiteShowcase language={language} />
           )}
         </section>
 

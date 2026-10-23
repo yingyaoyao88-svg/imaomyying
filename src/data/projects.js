@@ -355,6 +355,183 @@ export const projects = [
       ],
     },
   },
+  {
+    slug: "teaching-tools",
+    isFlagship: false,
+    number: "04",
+    accent: "#10b981",
+    title: {
+      zh: "AomyYing 英语练习小工具",
+      en: "AomyYing Teaching Tools",
+    },
+    subtitle: {
+      zh: "面向初学者与少儿英语的轻量交互式拼读、闪卡打卡与课文对话应用",
+      en: "Interactive phonics, vocabulary flashcards & reading dialogue practice Web app",
+    },
+    category: {
+      zh: "教育提效 · 互动练习工具",
+      en: "Educational Tool · Interactive App",
+    },
+    excerpt: {
+      zh: "针对英语初学者与少儿日常拼读打卡需求开发的轻量 Web 应用。涵盖 Unit 1-6 课文同步词汇、牛津自然拼读（Oxford Phonics 1-3级）、Let's talk 场景对话演练与听力磨耳朵，支持真人语音发音与错题复盘机制，零依赖轻量化构建。",
+      en: "A mobile-first English learning application designed for daily phonics and vocabulary practice. Features multi-unit curriculum, Oxford Phonics levels 1-3, interactive dialogues, native TTS pronunciation, and mistake reviews with zero dependencies.",
+    },
+    tags: {
+      zh: ["Web应用", "英语教学", "自然拼读", "单词打卡", "零依赖架构"],
+      en: ["Web App", "English Learning", "Phonics", "Flashcards", "Zero Dependency"],
+    },
+    githubUrl: "https://github.com/yingyaoyao88-svg/AomyYing-teaching-tools",
+    demoUrl: "https://english-practice-app.vercel.app",
+    stats: [
+      { label: { zh: "打卡模块", en: "Modules" }, value: "4 大专项" },
+      { label: { zh: "教材同步", en: "Curriculum" }, value: "Unit 1-6 + 拼读" },
+      { label: { zh: "加载体验", en: "Performance" }, value: "<100ms 纯原生" },
+    ],
+    overview: {
+      zh: [
+        "AomyYing 英语练习小工具（Speak English）是我针对英语初学者和少儿日常跟读、打卡、拼读复习痛点自研的轻量化交互工具。",
+        "市场上多数少儿/初级英语 App 动辄数百兆、充斥营销广告与付费卡点。本工具坚持“开箱即用、无干扰、沉浸式跟读”原则，通过单页面原生技术栈实现秒级响应与丝滑触屏体验，直接在手机或平板浏览器上就能完成高质量英语日常打卡。",
+      ],
+      en: [
+        "AomyYing Teaching Tools (Speak English) is a lightweight, mobile-first Web application created for beginners and young learners to practice daily phonics, vocabulary retention, and dialogues.",
+        "Unlike bloated commercial apps full of ads and paywalls, this tool prioritizes instant load times, distraction-free typography, and responsive touch-first cards for daily repetition.",
+      ],
+    },
+    problem: {
+      zh: [
+        "传统商业英语 App 体积庞大、广告繁琐，缺乏专注纯粹的课本配套练习环境。",
+        "单词记忆枯燥：纯文本背诵缺乏语音、释义与生动视觉线索的即时联想绑定。",
+        "口语对话缺乏伴读：自学者在课后很难模拟双人分角色朗读（Let's talk）语境。",
+      ],
+      en: [
+        "Heavy bloated commercial apps: Flooded with ads and paywalls, distracting students from core practice.",
+        "Boring rote memorization: Text-only flashcards lack immediate visual and native phonetic associations.",
+        "Lack of interactive dialogue partner: Hard to simulate real-world Let's Talk role-play conversations at home.",
+      ],
+    },
+    solution: {
+      zh: [
+        "多维互动闪卡：大字号排版 + 生动 Emoji 图像线索 + 国际音标 + 原生 Web Speech 语音朗读，形成视听双重记忆通道。",
+        "教材单元与自然拼读分级：涵盖 Unit 1-6 核心课标词库与牛津自然拼读 1-3 级专项进阶体系。",
+        "Let's talk 场景对话演练与错题本：逐句高亮跟读对话，打卡过程中自动收集易错词汇，支持专项错题温故。",
+      ],
+      en: [
+        "Multi-modal flashcards: Crisp typography + emoji cues + phonetic transcriptions + Web Speech native TTS for auditory anchoring.",
+        "Curriculum sync & Phonics progression: Covers Unit 1-6 core syllabus alongside Oxford Phonics levels 1 to 3.",
+        "Interactive dialogues & mistake bank: Turn-by-turn dialogue guidance and automatic logging of weak words for spaced revision.",
+      ],
+    },
+    techStack: [
+      "Vanilla JavaScript",
+      "HTML5 & Modern CSS3",
+      "Web Speech API",
+      "Mobile-First Responsive UI",
+      "Vercel Edge Hosting",
+    ],
+    features: {
+      zh: [
+        { title: "四大核心学习模式", desc: "单词闪卡卡片、自然拼读进阶、课文对话演练、错题专项温故一体化串联。" },
+        { title: "原生语音合成与即时点读", desc: "调用浏览器原生高保真发音引擎，零额外音频流量开销，毫秒级响应发音。" },
+        { title: "自适应拟物卡片交互", desc: "精心调试移动端滑动弹性与卡片点击动效，支持掌握程度自评与打卡进度条反馈。" },
+        { title: "免登录纯本地状态记录", desc: "学习进度与错题记录自动本地化保存，无隐私泄露风险，打开即练。" },
+      ],
+      en: [
+        { title: "4 Core Learning Modes", desc: "Seamless flow across Flashcards, Phonics, Let's Talk Dialogues, and Mistake Reviews." },
+        { title: "Native Speech Synthesis", desc: "Instant audio playback via native Web Speech API with zero audio download latency." },
+        { title: "Tactile Mobile UI", desc: "Fine-tuned touch springs, card flipping, self-rating buttons, and animated daily progress bars." },
+        { title: "Zero Setup & Privacy-first", desc: "Local state preservation without account logins or trackers — instant practice on any device." },
+      ],
+    },
+  },
+  {
+    slug: "portfolio-site",
+    isFlagship: false,
+    number: "05",
+    accent: "#6366f1",
+    title: {
+      zh: "AOMYYING AI 个人主页与作品集",
+      en: "AOMYYING AI Portfolio & Lab",
+    },
+    subtitle: {
+      zh: "融合 Linear 工业黑曜石极客风与 Rauno 拟态微动效的高审美作品库官网",
+      en: "Crafted developer portfolio with Linear Obsidian aesthetic and tactile micro-interactions",
+    },
+    category: {
+      zh: "个人品牌 · 开源作品集",
+      en: "Personal Brand · Open Source",
+    },
+    excerpt: {
+      zh: "为 AI 科技博主与独立开发者量身打造的高审美数字化主页。采用 React 18 + Vite + Tailwind CSS 构建，深度融合 Linear 工业黑曜石暗调网格与 Apple 拟态触感交互。集成 React Bits 动效、Canvas 粒子星空、三套高质感主题切换、全平台自媒体矩阵及共建投稿审核系统。",
+      en: "A high-craft portfolio website for AI creators and indie builders. Built with React 18, Vite, and Tailwind CSS. Features React Bits motion components, dynamic particle canvas, 3 curated aesthetic themes, and an interactive showcase.",
+    },
+    tags: {
+      zh: ["React 18", "Vite", "Tailwind CSS", "Framer Motion", "Bento Grid", "开源项目"],
+      en: ["React 18", "Vite", "Tailwind CSS", "Framer Motion", "Bento Grid", "Open Source"],
+    },
+    githubUrl: "https://github.com/yingyaoyao88-svg/imaomyying",
+    demoUrl: "https://imaomyying.com/",
+    stats: [
+      { label: { zh: "视觉主题", en: "Themes" }, value: "3 款高质感" },
+      { label: { zh: "动效引擎", en: "Motion" }, value: "React Bits + Framer" },
+      { label: { zh: "部署平台", en: "Hosting" }, value: "Vercel Global CDN" },
+    ],
+    overview: {
+      zh: [
+        "AOMYYING 个人作品库官网是我作为 AI 科技博主与独立开发者对外展示作品、沉淀开源项目以及连接同行的核心数字门户。",
+        "网站全面告别千篇一律的通用模板，汲取 Linear、Paco Coursey 与 Rauno 的前沿设计工程美学，注重 1px 微发光边框、鼠标聚光灯反光、柔和星空粒子与触觉反馈，呈现极客专业度与审美质感的平衡。",
+      ],
+      en: [
+        "AOMYYING Portfolio Website is the primary digital gateway showcasing my indie software projects, open-source repositories, and cross-platform creator matrix.",
+        "Moving beyond generic templates, it draws inspiration from Linear, Paco Coursey, and Rauno. It features 1px specular borders, mouse spotlights, ambient canvas particles, and tactile micro-interactions.",
+      ],
+    },
+    problem: {
+      zh: [
+        "常规模板视觉平庸：市面上常见个人主页缺乏独特的视觉识别度与设计工程细节。",
+        "移动端体验割裂：很多设计感强的网站在手机端排版错乱、交互卡顿或缺少触控适配。",
+        "作品展示缺少深度：简单的文字卡片无法生动呈现复杂的 AI 工作流与交互逻辑。",
+      ],
+      en: [
+        "Generic portfolio templates: Lack distinctive visual identity and design engineering craftsmanship.",
+        "Poor mobile adaptation: Fancy web designs frequently break or suffer from sluggish touch interactions on phones.",
+        "Shallow project showcases: Static cards fail to convey the dynamic workflows and logic behind AI products.",
+      ],
+    },
+    solution: {
+      zh: [
+        "Linear + Rauno 工业双生美学：自研 Bento Grid 布局，支持琥珀曜岩、雅致纸境、赛博薄荷三款配色秒切。",
+        "React Bits 动效矩阵：引入 DecryptedText 字符解密打字机、ShinyText 流光文字、StarBorder 动态聚光流光边框与 Canvas 粒子场。",
+        "深度互动沙盒与全平台自媒体联动：每个核心项目配备独立交互演示模块，并在全站打通微信公众号、小红书、视频号与二维码悬浮坞（Floating Dock）。",
+      ],
+      en: [
+        "Linear + Rauno twin aesthetic: Modular Bento Grid supporting instant toggling between Amber Obsidian, Warm Linen, and Cyber Mint.",
+        "React Bits animation suite: Integrated DecryptedText typewriter, ShinyText shimmer, StarBorder glow borders, and canvas particles.",
+        "Interactive feature sandboxes: Every project features an interactive sandbox alongside an Apple-inspired floating dock with WeChat QR.",
+      ],
+    },
+    techStack: [
+      "React 18",
+      "Vite",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Lucide Icons",
+      "Vercel Edge",
+    ],
+    features: {
+      zh: [
+        { title: "三大沉浸式主题系统", desc: "一键切换「琥珀曜岩」高级黑金、「雅致纸境」温润燕麦纸质与「赛博薄荷」极客板岩绿。" },
+        { title: "React Bits 高质感微动效", desc: "字符解密渐现、流光边框、动态粒子网格与悬浮卡片聚光灯反光。" },
+        { title: "独立项目交互展示页", desc: "为各个开源工具定制沉浸式操作沙盒，所见即所得体验产品核心能力。" },
+        { title: "底部浮动交互坞 (Dock)", desc: "iOS/macOS 风格磨砂玻璃 Dock，集成多主题快切、微信联系二维码弹窗与语言切换。" },
+      ],
+      en: [
+        { title: "3 Curated Themes", desc: "Instant toggle between Amber Obsidian, Warm Linen, and Cyber Mint palettes." },
+        { title: "React Bits Micro-Interactions", desc: "DecryptedText typewriter, StarBorder shimmering outlines, and interactive canvas particles." },
+        { title: "Dedicated Interactive Sandboxes", desc: "Playable feature demos inside each project detail page for hands-on evaluation." },
+        { title: "Floating Dock with WeChat Modal", desc: "iOS/macOS frosted glass dock with quick theme switching, WeChat QR modal, and language toggle." },
+      ],
+    },
+  },
 ];
 
 export const githubRepositories = [
@@ -395,11 +572,43 @@ export const githubRepositories = [
     stars: 0,
     url: "https://github.com/yingyaoyao88-svg/xiao-a-cover-skill",
   },
+  {
+    name: "AomyYing-teaching-tools",
+    title: { zh: "AomyYing 英语练习小工具 (Speak English)", en: "AomyYing Teaching Tools" },
+    desc: {
+      zh: "面向少儿与初学者的轻量交互式英语拼读、单词打卡与口语对话应用，零依赖纯原生轻量化构建。",
+      en: "Lightweight interactive phonics, flashcards & dialogue practice Web app built with zero dependencies.",
+    },
+    language: "JavaScript / HTML",
+    langColor: "#f1e05a",
+    stars: 0,
+    url: "https://github.com/yingyaoyao88-svg/AomyYing-teaching-tools",
+    demoUrl: "https://english-practice-app.vercel.app",
+  },
+  {
+    name: "imaomyying",
+    title: { zh: "AOMYYING AI 个人主页与作品库", en: "AOMYYING Portfolio Website" },
+    desc: {
+      zh: "融合 Linear 工业黑曜石极客风与 Rauno 拟态微动效的个人官网，React 18 + Vite + Tailwind CSS。",
+      en: "High-aesthetic developer portfolio with Linear Obsidian style & Rauno micro-interactions.",
+    },
+    language: "JavaScript / React",
+    langColor: "#61dafb",
+    stars: 0,
+    url: "https://github.com/yingyaoyao88-svg/imaomyying",
+    demoUrl: "https://imaomyying.com/",
+  },
 ];
 
 export function getProjectBySlug(slug) {
   if (slug === "xiao-a-cover-skill") {
     return projects.find((project) => project.slug === "xhs-cover-gen");
+  }
+  if (slug === "AomyYing-teaching-tools") {
+    return projects.find((project) => project.slug === "teaching-tools");
+  }
+  if (slug === "imaomyying") {
+    return projects.find((project) => project.slug === "portfolio-site");
   }
   return projects.find((project) => project.slug === slug);
 }
