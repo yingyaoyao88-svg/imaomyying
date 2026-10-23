@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中考英语错题 AI 深度诊断系统 | Exam Analysis SOP Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07090e;
+      --panel: rgba(16, 21, 33, 0.75);
+      --panel-elevated: rgba(23, 30, 48, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(140, 193, 255, 0.35);
+      --text: #f0f4fc;
+      --muted: #8e9db5;
+      --accent: #60a5fa;
+      --accent-glow: rgba(96, 165, 250, 0.22);
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 80% 15%, rgba(96, 165, 250, 0.12), transparent 40%),
+                  radial-gradient(circle at 10% 85%, rgba(139, 92, 246, 0.1), transparent 40%),
+                  linear-gradient(180deg, #07090e 0%, #0d121c 100%);
+      color: var(--text);
+      padding: 24px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Header Bar */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #fff;
+      font-size: 16px;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      background: rgba(96, 165, 250, 0.15);
+      color: var(--accent);
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--success);
+      background: rgba(52, 211, 153, 0.1);
+      padding: 4px 10px;
+      border-radius: 99px;
+      border: 1px solid rgba(52, 211, 153, 0.2);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
+    }
+
+    /* Main Grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .main-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .section-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Preset Buttons */
+    .preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .preset-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preset-btn:hover {
+      background: rgba(96, 165, 250, 0.12);
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    .preset-btn.active {
+      background: rgba(96, 165, 250, 0.2);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* Input Box */
+    .input-box {
+      background: rgba(10, 14, 24, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .input-question {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .option-item {
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+    }
+
+    .option-item.user-wrong {
+      background: rgba(248, 113, 113, 0.12);
+      border-color: var(--danger);
+      color: #fca5a5;
+    }
+
+    .option-item.correct {
+      background: rgba(52, 211, 153, 0.12);
+      border-color: var(--success);
+      color: #86efac;
+    }
+
+    .opt-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .user-wrong .opt-tag { background: var(--danger); color: #000; }
+    .correct .opt-tag { background: var(--success); color: #000; }
+
+    /* Action Trigger */
+    .btn-action {
+      background: linear-gradient(135deg, #3b82f6, #4f46e5);
+      border: none;
+      color: #fff;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 18px var(--accent-glow);
+    }
+
+    .btn-action:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+
+    /* Diagnosis Steps */
+    .pipeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .step-item.active {
+      background: rgba(96, 165, 250, 0.08);
+      border-color: var(--accent);
+    }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .step-item.active .step-num {
+      background: var(--accent);
+      color: #080c14;
+    }
+
+    .step-content h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .step-content p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Diagnostic Output Dashboard */
+    .result-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .metric-val {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .detail-card {
+      background: var(--panel-elevated);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .detail-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #93c5fd;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .detail-text {
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    /* 3-day recovery plan */
+    .plan-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .plan-day {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 12px;
+    }
+
+    .day-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 11px;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      padding: 3px 6px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-icon">SOP</div>
+        <div>
+          <div class="brand-title">中考英语错题 AI 诊断工作流系统</div>
+          <div style="font-size: 11px; color: var(--muted);">Turning Errors into Actionable Diagnostic & Score-Recovery Paths</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span class="brand-tag">v2.4 MVP</span>
+        <div class="status-badge">
+          <span class="status-dot"></span> AI 诊断引擎就绪
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Section -->
+    <div class="main-grid">
+      <!-- Left Column: Inputs & Pipeline -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="card">
+          <div class="section-title">
+            <span>选择或载入经典错题案例</span>
+            <span style="font-size: 11px; color: var(--accent);">3 个中考高频失分题型</span>
+          </div>
+
+          <!-- Presets -->
+          <div class="preset-row">
+            <button type="button" class="preset-btn active" onclick="loadCase(0)">
+              📌 定语从句关系代词误用
+            </button>
+            <button type="button" class="preset-btn" onclick="loadCase(1)">
+              📌 完形连词与转折逻辑
+            </button>
+            <button type="button" class="preset-btn" onclick="loadCase(2)">
+              📌 过去时被动语态混淆
+            </button>
+          </div>
+
+          <!-- Problem Card -->
+          <div class="input-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span id="caseTag" style="font-size: 11px; color: #93c5fd; font-family: 'JetBrains Mono', monospace; font-weight: 600;">[2024模考·单选第8题]</span>
+              <span style="font-size: 11px; color: var(--danger);">学生错选率: 42.8%</span>
+            </div>
+            <div class="input-question" id="caseQuestion">
+              "This is the very factory ______ my father worked ten years ago."
+            </div>
+            <div class="options-grid" id="caseOptions">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <button type="button" class="btn-action" id="btnDiagnose" onclick="runDiagnosis()">
+            <span>⚡ 运行 AI 6层全流程诊断</span>
+          </button>
+        </div>
+
+        <!-- Workflow Pipeline Card -->
+        <div class="card">
+          <div class="section-title">
+            <span>AI 6层诊断流程 (Diagnostic SOP Pipeline)</span>
+            <span id="pipelineStatus" style="font-size: 11px; color: var(--muted);">已完成分析</span>
+          </div>
+
+          <div class="pipeline" id="pipelineSteps">
+            <div class="step-item active">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <h4>考点建模与题型匹配</h4>
+                <p>提取考纲核心考点，识别考查主从复合句中的“定语从句先行词与从句成分”。</p>
+              </div>
+            </div>
+            <div class="step-item active">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <h4>深层归因：判断从句是否缺宾语</h4>
+                <p>识别错误根因：学生将先行词 factory 误当作从句及物动词宾语，未发现 work 是不及物动词。</p>
+              </div>
+            </div>
+            <div class="step-item active">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <h4>认知偏差定位与易混规则</h4>
+                <p>定位痛点：看见“地点名词”盲目选 which 或 that，缺少“从句还原介词短语”的检验意识。</p>
+              </div>
+            </div>
+            <div class="step-item active">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <h4>可执行修复口诀与变式训练</h4>
+                <p>口诀化记忆：先行词代入从句看结构，缺少主宾选代词，缺少状语选副词（in the factory）。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Output Card -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="card result-box">
+          <div class="section-title">
+            <span>诊断报告与提分路径</span>
+            <span style="font-size: 11px; color: var(--success); font-family: 'JetBrains Mono', monospace;">CONFIDENCE 99.2%</span>
+          </div>
+
+          <!-- Key Metrics -->
+          <div class="metrics-row">
+            <div class="metric-card">
+              <div class="metric-val" id="metricScore">-2分</div>
+              <div class="metric-label">失分权重</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val" id="metricType" style="font-size: 15px; padding-top: 3px;">从句成分</div>
+              <div class="metric-label">认知断点</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val" id="metricDays">3 天</div>
+              <div class="metric-label">提分修复周期</div>
+            </div>
+          </div>
+
+          <!-- Diagnostic Deep Dive -->
+          <div class="detail-card">
+            <div class="detail-badge">
+              <span>🎯 失分根因与思维卡点</span>
+            </div>
+            <div class="detail-text" id="diagRootCause">
+              本题混淆了<strong>关系代词 which/that</strong> 与 <strong>关系副词 where</strong>。从句 "my father worked ten years ago" 中 work 为不及物动词，从句不缺主语或宾语，需要地点状语（in the factory），故必须选用 where 或 in which。
+            </div>
+          </div>
+
+          <div class="detail-card">
+            <div class="detail-badge" style="color: #6ee7b7;">
+              <span>💡 一秒破题策略 (SOP Rule)</span>
+            </div>
+            <div class="detail-text" id="diagRule">
+              <strong>“成分还原检验法”：</strong>将先行词 factory 代入从句检验。如果句子完整需要加介词（worked in the factory），必选 <em>where / in which</em>；若能直接作主谓宾（visited the factory），才选 <em>which / that</em>。
+            </div>
+          </div>
+
+          <!-- 3-Day Action Plan -->
+          <div class="card" style="padding: 16px; background: rgba(0,0,0,0.25); border-radius: 12px;">
+            <div style="font-size: 12px; font-weight: 700; color: #cbd5e1; margin-bottom: 8px;">
+              📅 3 天提分行动计划 (Action Loop)
+            </div>
+            <div class="plan-list" id="diagPlan">
+              <div class="plan-day">
+                <span class="day-tag">Day 1</span>
+                <span>熟记口诀，完成 5 道“地点先行词+定语从句”精准辨析</span>
+              </div>
+              <div class="plan-day">
+                <span class="day-tag">Day 2</span>
+                <span>完成 10 组及物/不及物动词在从句中的成分还原对比</span>
+              </div>
+              <div class="plan-day">
+                <span class="day-tag">Day 3</span>
+                <span>重做错题并进行 1 组真题同类变式检验，目标 100% 正确</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div style="display: flex; gap: 10px;">
+            <button type="button" class="btn-secondary" style="flex: 1;" onclick="copyReport()">
+              <span id="copyBtnText">📋 复制完整诊断卡</span>
+            </button>
+            <button type="button" class="btn-secondary" style="flex: 1;" onclick="alert('已根据当前错题模型生成同类型中考变式题：\n\n【变式练习】\nThis is the city ______ I visited last summer.\nA. where  B. which  C. who  D. in which\n\n💡 提示：visit 是及物动词，从句缺宾语，答案应选 B！')">
+              <span>🎯 练习同类变式题</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CASES = [
+      {
+        tag: "[2024模考·单选题]",
+        rate: "42.8%",
+        question: "This is the very factory ______ my father worked ten years ago.",
+        options: [
+          { text: "A. which", isWrong: true, note: "学生误选" },
+          { text: "B. that", isWrong: false, note: "" },
+          { text: "C. where", isWrong: false, isCorrect: true, note: "正确答案" },
+          { text: "D. whose", isWrong: false, note: "" }
+        ],
+        score: "-2分",
+        type: "定从成分",
+        days: "3 天",
+        rootCause: "本题混淆了关系代词 which/that 与关系副词 where。从句 'my father worked ten years ago' 中 work 为不及物动词，从句不缺主语或宾语，需要地点状语（in the factory），故必须选用 where 或 in which。",
+        rule: "“成分还原检验法”：将先行词 factory 代入从句检验。如果句子完整需要加介词（worked in the factory），必选 where / in which；若能直接作主谓宾（visited the factory），才选 which / that。",
+        plan: [
+          { day: "Day 1", text: "熟记口诀，完成 5 道“地点先行词+定语从句”精准辨析" },
+          { day: "Day 2", text: "完成 10 组及物/不及物动词在从句中的成分还原对比" },
+          { day: "Day 3", text: "重做错题并进行 1 组真题同类变式检验，目标 100% 正确" }
+        ]
+      },
+      {
+        tag: "[中考真题·完形填空]",
+        rate: "38.5%",
+        question: "He was already exhausted after the 10-kilometer run, ______ he refused to give up before reaching the finish line.",
+        options: [
+          { text: "A. so", isWrong: true, note: "因果混淆" },
+          { text: "B. but", isWrong: false, isCorrect: true, note: "正确答案" },
+          { text: "C. because", isWrong: false, note: "" },
+          { text: "D. though", isWrong: false, note: "" }
+        ],
+        score: "-1.5分",
+        type: "转折逻辑",
+        days: "2 天",
+        rootCause: "上下文逻辑识别偏差。前句为 '疲惫' (exhausted)，后句为 '拒绝放弃' (refused to give up)，语义呈现明确的反向转折关系，而非顺承因果。选 so 导致逻辑倒置。",
+        rule: "“情感与语义正反标记法”：读完前半句标记正负情感（- 负向：疲劳），后半句标记（+ 正向：坚持），前后符号相异必是转折（but/yet/however），前后同向才选因果（so/therefore）。",
+        plan: [
+          { day: "Day 1", text: "整理完形高频 8 大连词逻辑分类（因果、转折、并列、让步）" },
+          { day: "Day 2", text: "做 2 篇中考完形填空连词专项训练，用正负符号标记逻辑" }
+        ]
+      },
+      {
+        tag: "[中考真题·语法选择]",
+        rate: "36.2%",
+        question: "The historic stone bridge ______ by the craftsmen in our hometown in 1958.",
+        options: [
+          { text: "A. built", isWrong: true, note: "遗漏被动" },
+          { text: "B. was built", isWrong: false, isCorrect: true, note: "正确答案" },
+          { text: "C. is built", isWrong: false, note: "时态错误" },
+          { text: "D. was building", isWrong: false, note: "" }
+        ],
+        score: "-2分",
+        type: "被动时态",
+        days: "2 天",
+        rootCause: "两重失误叠加：一是忽视了主语 'bridge' 与动词 'build' 之间是承受动作的被动关系；二是忽略了明确的过去时间状语 'in 1958'，错选主动过去式或现在时。",
+        rule: "“主谓动作方向+时间路标双重判定”：主语能不能发出动作？不能 $\\rightarrow$ 必用 be done；看时间状语 in 1958 $\\rightarrow$ be 动词必用 was/were。",
+        plan: [
+          { day: "Day 1", text: "掌握一般过去时被动语态公式 was/were + done" },
+          { day: "Day 2", text: "攻克 10 道带有隐蔽时间状语的中考被动语态真题" }
+        ]
+      }
+    ];
+
+    let currentCaseIndex = 0;
+
+    function loadCase(index) {
+      currentCaseIndex = index;
+      document.querySelectorAll('.preset-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      const c = CASES[index];
+      document.getElementById('caseTag').innerText = c.tag;
+      document.getElementById('caseQuestion').innerText = c.question;
+      
+      const optContainer = document.getElementById('caseOptions');
+      optContainer.innerHTML = c.options.map(opt => `
+        <div class="option-item ${opt.isWrong ? 'user-wrong' : ''} ${opt.isCorrect ? 'correct' : ''}">
+          <span>${opt.text}</span>
+          ${opt.note ? `<span class="opt-tag">${opt.note}</span>` : ''}
+        </div>
+      `).join('');
+
+      document.getElementById('metricScore').innerText = c.score;
+      document.getElementById('metricType').innerText = c.type;
+      document.getElementById('metricDays').innerText = c.days;
+      document.getElementById('diagRootCause').innerHTML = c.rootCause;
+      document.getElementById('diagRule').innerHTML = c.rule;
+
+      const planContainer = document.getElementById('diagPlan');
+      planContainer.innerHTML = c.plan.map(p => `
+        <div class="plan-day">
+          <span class="day-tag">${p.day}</span>
+          <span>${p.text}</span>
+        </div>
+      `).join('');
+    }
+
+    function runDiagnosis() {
+      const btn = document.getElementById('btnDiagnose');
+      const pipelineStatus = document.getElementById('pipelineStatus');
+      const steps = document.querySelectorAll('.step-item');
+
+      btn.disabled = true;
+      btn.innerHTML = "<span>🔄 AI 正在推导考点与认知路径...</span>";
+      pipelineStatus.innerText = "诊断计算中...";
+
+      steps.forEach((s, idx) => {
+        s.classList.remove('active');
+        setTimeout(() => {
+          s.classList.add('active');
+        }, (idx + 1) * 260);
+      });
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = "<span>⚡ 运行 AI 6层全流程诊断</span>";
+        pipelineStatus.innerText = "诊断已生成";
+      }, 1200);
+    }
+
+    function copyReport() {
+      const c = CASES[currentCaseIndex];
+      const text = `【中考英语错题 AI 诊断报告】\n题目：${c.question}\n考点类型：${c.type}\n失分原因：${c.rootCause.replace(/<[^>]+>/g, '')}\n破题SOP：${c.rule.replace(/<[^>]+>/g, '')}\n建议训练周期：${c.days}`;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtnText');
+        btn.innerText = "✅ 诊断卡已复制到剪贴板！";
+        setTimeout(() => {
+          btn.innerText = "📋 复制完整诊断卡";
+        }, 2200);
+      });
+    }
+
+    // Initialize with first case
+    loadCase(0);
+  </script>
+</body>
+</html>
