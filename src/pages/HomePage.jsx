@@ -77,6 +77,8 @@ const XIAOA_MOODS = [
     status: "FOCUS MODE // 正在写代码中",
     statusEn: "FOCUS MODE // Coding & Shipping",
     pos: "0% 50%",
+    photo: "/xiaoa-real-0.jpg",
+    pixel: "/xiaoa-pixel-0.jpg",
     badgeColor: "#FF5A26",
   },
   {
@@ -86,6 +88,8 @@ const XIAOA_MOODS = [
     status: "EUREKA! // 发现神仙 AI 工具",
     statusEn: "EUREKA! // Discovering Next-Gen AI",
     pos: "33.33% 50%",
+    photo: "/xiaoa-real-1.jpg",
+    pixel: "/xiaoa-pixel-1.jpg",
     badgeColor: "#FFD600",
   },
   {
@@ -95,6 +99,8 @@ const XIAOA_MOODS = [
     status: "DEBUGGING // 攻克复杂工作流",
     statusEn: "DEBUGGING // Cracking Workflows",
     pos: "66.66% 50%",
+    photo: "/xiaoa-real-2.jpg",
+    pixel: "/xiaoa-pixel-2.jpg",
     badgeColor: "#2563EB",
   },
   {
@@ -104,6 +110,8 @@ const XIAOA_MOODS = [
     status: "SHIPPED // 新一期干货已发布",
     statusEn: "SHIPPED // New Drop Live",
     pos: "100% 50%",
+    photo: "/xiaoa-real-3.jpg",
+    pixel: "/xiaoa-pixel-3.jpg",
     badgeColor: "#10B981",
   },
 ];
@@ -325,7 +333,7 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
   const [currentTime, setCurrentTime] = useState("");
   const [qrModalOpen, setQrModalOpen] = useState(false);
   const [moodIdx, setMoodIdx] = useState(0);
-  const [avatarStyle, setAvatarStyle] = useState("pixel"); // "sheet" | "pixel" | "collage"
+  const [avatarStyle, setAvatarStyle] = useState("sheet"); // "sheet" (真人四格) | "pixel" (复古像素) | "collage" (画报拼贴)
   const currentMood = XIAOA_MOODS[moodIdx];
 
   const handleOpenQr = () => {
@@ -696,7 +704,7 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                   <>
                     <div className="pixel-crt-scanline" />
                     <img
-                      src="/xiaoa-pixel-avatar.jpg"
+                      src={currentMood.pixel || "/xiaoa-pixel-avatar.jpg"}
                       alt="小A 16-bit 像素风头像"
                       className="neo-avatar-img neo-avatar-pixel"
                     />
@@ -704,18 +712,14 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                 ) : avatarStyle === "collage" ? (
                   <img
                     src="/xiaoa-collage.jpg"
-                    alt="小A 拼贴风头像"
-                    className="neo-avatar-img"
+                    alt="小A 先锋画报拼贴头像"
+                    className="neo-avatar-img neo-avatar-collage"
                   />
                 ) : (
-                  <div
-                    className="neo-avatar-sheet"
-                    style={{
-                      backgroundImage: "url('/xiaoa-sheet.jpg')",
-                      backgroundSize: "400% 100%",
-                      backgroundPosition: currentMood.pos,
-                      backgroundRepeat: "no-repeat",
-                    }}
+                  <img
+                    src={currentMood.photo || "/xiaoa-real-0.jpg"}
+                    alt="小A 真实摄影展示"
+                    className="neo-avatar-img neo-avatar-real"
                   />
                 )}
 
@@ -732,8 +736,8 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                 </div>
               </div>
 
-              {/* 4 Mood Selector Buttons (visible in sheet mode) */}
-              {avatarStyle === "sheet" && (
+              {/* 4 Mood Selector Buttons (visible in sheet and pixel mode) */}
+              {(avatarStyle === "sheet" || avatarStyle === "pixel") && (
                 <div className="neo-mood-grid">
                   {XIAOA_MOODS.map((m, idx) => (
                     <button
