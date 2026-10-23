@@ -44,6 +44,19 @@ export const creatorBio = {
 
 export const mediaAccounts = [
   {
+    id: "x",
+    platform: "X (Twitter)",
+    platformEn: "X (Twitter)",
+    handle: "@Aomyying",
+    tag: "全球阵地 · Build in Public",
+    tagEn: "Global Voice · Build in Public",
+    color: "#0f1419",
+    bgSoft: "rgba(15, 20, 25, 0.12)",
+    url: "https://x.com/Aomyying",
+    desc: "实时同步独立全栈开发动态、AI 工具测评、全球前沿科技观察与精选短文专栏。",
+    descEn: "Daily build-in-public logs, generative AI workflows, and tech insights.",
+  },
+  {
     id: "xhs",
     platform: "小红书",
     platformEn: "Xiaohongshu",
@@ -97,11 +110,105 @@ export const mediaAccounts = [
   },
 ];
 
+export const featuredArticles = [
+  {
+    id: "art-1",
+    title: {
+      zh: "英语卡住的地方，从来不是缺资料：商务、口语、写作、雅思4个场景的AI练法",
+      en: "Why English Learning Stalls: AI Workflows for Business, Speaking, Writing & IELTS",
+    },
+    excerpt: {
+      zh: "成年人学英语最大的痛点不是没资源，而是改过的句子不留痕、犯过的错没人记。本文详解如何通过桌面 AI Agent 与记忆类 Skills，打通商务、日常口语、英文写作与雅思 4 个高频场景的真实练习闭环。",
+      en: "The real bottleneck in adult English study isn't lack of material — it's the lack of iterative retention. Exploring how to use AI Agents and memory skills to build real feedback loops across 4 core scenarios.",
+    },
+    category: {
+      zh: "AI × 英语实战",
+      en: "AI × English",
+    },
+    date: "2026-10",
+    readTime: "8 min read",
+    platform: "X 专栏 / 好文集",
+    platformEn: "X Thread & Haowenji",
+    author: "@Aomyying",
+    url: "https://x.com/Aomyying",
+    tags: ["AI学英语", "工作流", "口语训练", "商务表达", "提示词"],
+  },
+  {
+    id: "art-2",
+    title: {
+      zh: "豆包工作学英语：口语词汇商务英语实操指南",
+      en: "Mastering Spoken & Business English with AI: Practical Workflow Guide",
+    },
+    excerpt: {
+      zh: "针对职场人时间碎片化、缺乏纯英文语言环境的现实，分享如何把 AI 深度调优为 24 小时待命的私人商务私教。涵盖外企日常开会、跨国邮件沟通、薪资谈判与场景模拟三件套实战实操。",
+      en: "A step-by-step practical blueprint for working professionals to transform AI into a 24/7 personal business English coach for meetings, emails, and conversational drills.",
+    },
+    category: {
+      zh: "职场商务 · 提效",
+      en: "Business English",
+    },
+    date: "2026-09",
+    readTime: "6 min read",
+    platform: "X 专栏 / 好文集",
+    platformEn: "X Thread & Haowenji",
+    author: "@Aomyying",
+    url: "https://x.com/Aomyying",
+    tags: ["职场英语", "商务邮件", "口语对话", "豆包AI", "高频词汇"],
+  },
+  {
+    id: "art-3",
+    title: {
+      zh: "从 0 到 1 打造独立产品：AI 辅助编程开发与边缘部署全记录",
+      en: "Zero-to-One Shipping: Full-stack AI Coding & Edge Deployment Field Notes",
+    },
+    excerpt: {
+      zh: "复盘如何借助 Claude Code、Cursor、Next.js 与 Cloudflare D1 边缘架构，在无需高昂服务器运维成本的前提下，一个人从真实痛点构想到上线生产级全栈产品的完整实战与踩坑指南。",
+      en: "A comprehensive retrospective on building and shipping full-stack products using Claude Code, Cursor, Next.js, and Cloudflare D1 with minimal server overhead.",
+    },
+    category: {
+      zh: "独立开发 · 复盘",
+      en: "Indie Building",
+    },
+    date: "2026-10",
+    readTime: "10 min read",
+    platform: "X / 小A的AI日记",
+    platformEn: "X / Xiao-A Diary",
+    author: "@Aomyying",
+    url: "https://x.com/Aomyying",
+    tags: ["独立全栈", "Claude Code", "Cloudflare D1", "Next.js", "出海产品"],
+  },
+  {
+    id: "art-4",
+    title: {
+      zh: "自媒体 IP 视觉一致性方案：个人角色固化与爆款封面自动化",
+      en: "Personal IP Visual Continuity: Character Locking & Automated Cover Generation",
+    },
+    excerpt: {
+      zh: "自媒体创作者如何解决角色面部漂移与制图繁琐的痛点？把个人 IP 形象参数化，锁定比例与五官特征，结合 3D 创意场景与立体字排版模板，将单张爆款封面制作耗时从 1 小时压缩至 1 分钟。",
+      en: "How content creators can anchor character visual consistency using structured prompt specs and 3D typography to cut cover production time from 1 hour to 60 seconds.",
+    },
+    category: {
+      zh: "创作者经济 · 工作流",
+      en: "Creator Economy",
+    },
+    date: "2026-10",
+    readTime: "5 min read",
+    platform: "X / 小A的AI日记",
+    platformEn: "X / Xiao-A Diary",
+    author: "@Aomyying",
+    url: "https://x.com/Aomyying",
+    tags: ["IP角色设计", "AIGC生图", "小红书爆款", "Prompt规范", "自动化"],
+  },
+];
+
 export const contactDetails = {
   wechat: "15038098595",
   email: "yingyaoyao88@gmail.com",
   phone: "15038098595",
   github: "https://github.com/yingyaoyao88-svg",
+  x: "https://x.com/Aomyying",
+  twitter: "https://x.com/Aomyying",
+  xHandle: "@Aomyying",
   qrcode: "/wechat-qrcode.jpg",
 };
 

@@ -46,6 +46,7 @@ import {
 import {
   contactDetails,
   creatorBio,
+  featuredArticles,
   mediaAccounts,
   skillsList,
 } from "../data/siteContent";
@@ -798,7 +799,7 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                 </div>
                 <div className="pass-meta-row">
                   <span className="pass-meta-lbl">MATRIX // 矩阵</span>
-                  <span className="pass-meta-val">小红书 / 公众号 / 视频号 / 抖音</span>
+                  <span className="pass-meta-val">X (@Aomyying) · 小红书 · 公众号</span>
                 </div>
                 <div className="pass-meta-row">
                   <span className="pass-meta-lbl">FOCUS // 核心</span>
@@ -1222,7 +1223,13 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
 
                   <div className="media-card-top">
                     <div className="media-icon-wrap" style={{ background: item.bgSoft, color: item.color }}>
-                      <Icon size={24} />
+                      {item.id === "x" ? (
+                        <svg viewBox="0 0 24 24" width={22} height={22} fill="currentColor">
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                      ) : (
+                        Icon && <Icon size={24} />
+                      )}
                     </div>
                     <span className="media-platform-name">{item.platform}</span>
                   </div>
@@ -1236,21 +1243,134 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                     <p className="media-desc">{pick(item.desc, language)}</p>
 
                     <div className="media-tip-hint">
-                      <span>🔍 在{item.platform}搜索「{item.handle}」</span>
+                      {item.url ? (
+                        <span>🔗 独立开发日志 & 深度专栏 @Aomyying</span>
+                      ) : (
+                        <span>🔍 在{item.platform}搜索「{item.handle}」</span>
+                      )}
                     </div>
                   </div>
 
-                  <button
-                    type="button"
-                    className={`media-copy-btn ${isCopied ? "is-copied" : ""}`}
-                    onClick={() => copyToClipboard(item.handle, item.platform, item.id)}
-                  >
-                    {isCopied ? <Check size={13} /> : <Copy size={13} />}
-                    <span>{isCopied ? "✓ 已复制账号" : (language === "zh" ? "复制账号名" : "Copy Handle")}</span>
-                  </button>
+                  <div className="media-actions-row" style={{ display: "flex", gap: "8px", marginTop: "auto" }}>
+                    {item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="media-link-btn"
+                        style={{
+                          flex: 1,
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "6px",
+                          padding: "8px 12px",
+                          fontSize: "12px",
+                          fontWeight: 700,
+                          background: "#ffd600",
+                          color: "#111111",
+                          border: "2px solid #111111",
+                          boxShadow: "2px 2px 0 #111111",
+                          borderRadius: "10px",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <span>{language === "zh" ? "访问 X 账号" : "Visit X"}</span>
+                        <ArrowUpRight size={13} />
+                      </a>
+                    )}
+                    <button
+                      type="button"
+                      className={`media-copy-btn ${isCopied ? "is-copied" : ""}`}
+                      style={{ flex: item.url ? "0 0 auto" : "1" }}
+                      onClick={() => copyToClipboard(item.handle, item.platform, item.id)}
+                      title={isCopied ? "已复制" : `复制 ${item.handle}`}
+                    >
+                      {isCopied ? <Check size={13} /> : <Copy size={13} />}
+                      <span>{isCopied ? "✓" : (language === "zh" ? "复制" : "Copy")}</span>
+                    </button>
+                  </div>
                 </motion.article>
               );
             })}
+          </div>
+
+          {/* ============================================================ */}
+          {/* FEATURED ARTICLES & ESSAYS (精选文章与深度专栏)               */}
+          {/* ============================================================ */}
+          <div className="articles-subsection" style={{ marginTop: "44px" }}>
+            <div className="section-head" style={{ marginBottom: "20px" }}>
+              <span className="section-eyebrow">
+                <BookOpen size={14} className="text-accent" />
+                <ShinyText
+                  text={language === "zh" ? "精选专栏 · FEATURED ARTICLES" : "ARTICLES & ESSAYS"}
+                  speed={3.6}
+                />
+              </span>
+              <h3>{language === "zh" ? "小A的精选长文与技术复盘" : "Featured Articles & DevLogs"}</h3>
+              <p>
+                {language === "zh"
+                  ? "在 X (@Aomyying) 与全网沉淀的 AI 落地实操指南、独立开发复盘与成人英语自学方法论："
+                  : "Curated long-form guides, language acquisition frameworks, and build-in-public reflections."}
+              </p>
+            </div>
+
+            <div className="articles-bento-grid">
+              {featuredArticles.map((art, idx) => (
+                <motion.article
+                  key={art.id}
+                  className="bento-card bento-card--article neo-article-card"
+                  onMouseMove={handleCardMouseMove}
+                  {...fadeUp}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                >
+                  <div className="article-card-header">
+                    <span className="badge-pill badge-pill--tech">
+                      {pick(art.category, language)}
+                    </span>
+                    <div className="article-meta-info">
+                      <span className="article-platform-tag">{pick(art.platform, language)}</span>
+                      <span className="article-date">{art.date}</span>
+                    </div>
+                  </div>
+
+                  <h4 className="article-title">
+                    <a href={art.url} target="_blank" rel="noreferrer">
+                      {pick(art.title, language)}
+                    </a>
+                  </h4>
+
+                  <p className="article-excerpt">
+                    {pick(art.excerpt, language)}
+                  </p>
+
+                  <div className="article-tags">
+                    {art.tags.slice(0, 4).map((tag) => (
+                      <span key={tag} className="tag-chip">#{tag}</span>
+                    ))}
+                  </div>
+
+                  <div className="article-card-footer">
+                    <div className="article-author-pill">
+                      <svg viewBox="0 0 24 24" width={13} height={13} fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
+                      <span>{art.author}</span>
+                    </div>
+
+                    <a
+                      href={art.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-bento btn-bento--article-read"
+                    >
+                      <span>{language === "zh" ? "在 X 阅读全文" : "Read on X"}</span>
+                      <ArrowUpRight size={13} />
+                    </a>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -1678,6 +1798,25 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                 <ArrowUpRight size={15} className="contact-copy-icon" />
               </a>
 
+              {/* X (Twitter) */}
+              <a
+                href={contactDetails.x}
+                target="_blank"
+                rel="noreferrer"
+                className="contact-touch-card"
+              >
+                <div className="contact-icon contact-icon--x">
+                  <svg viewBox="0 0 24 24" width={18} height={18} fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </div>
+                <div>
+                  <span className="contact-label">X (Twitter) 官方主页</span>
+                  <strong className="contact-val">@Aomyying</strong>
+                </div>
+                <ArrowUpRight size={15} className="contact-copy-icon" />
+              </a>
+
               {/* GitHub */}
               <a
                 href={contactDetails.github}
@@ -1703,6 +1842,10 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
           <p>© 2026 小A (AOMYYING) · All rights reserved.</p>
           <div className="footer-links">
             <a href="#entry">返回顶部</a>
+            <span>·</span>
+            <a href="https://x.com/Aomyying" target="_blank" rel="noreferrer">
+              X (@Aomyying)
+            </a>
             <span>·</span>
             <a href="https://github.com/yingyaoyao88-svg" target="_blank" rel="noreferrer">
               GitHub
