@@ -325,7 +325,7 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
   const [currentTime, setCurrentTime] = useState("");
   const [qrModalOpen, setQrModalOpen] = useState(false);
   const [moodIdx, setMoodIdx] = useState(0);
-  const [useCollageAvatar, setUseCollageAvatar] = useState(false);
+  const [avatarStyle, setAvatarStyle] = useState("pixel"); // "sheet" | "pixel" | "collage"
   const currentMood = XIAOA_MOODS[moodIdx];
 
   const handleOpenQr = () => {
@@ -668,32 +668,49 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                 </span>
               </div>
 
-              {/* Xiao-A Interactive Avatar Frame */}
-              <div className="neo-avatar-frame">
-                {/* Mode toggle sticker button */}
+              {/* 3 Avatar Styles Switcher */}
+              <div className="neo-style-switcher-row">
                 <button
                   type="button"
-                  onClick={() => setUseCollageAvatar(!useCollageAvatar)}
-                  className="neo-mode-toggle-btn"
-                  title={language === "zh" ? "切换画报拼贴或四格表情" : "Toggle avatar mode"}
+                  onClick={() => setAvatarStyle("sheet")}
+                  className={`neo-style-pill ${avatarStyle === "sheet" ? "is-active" : ""}`}
                 >
-                  <Sparkles size={11} />
-                  <span>
-                    {useCollageAvatar
-                      ? (language === "zh" ? "🔄 切回四格表情" : "🔄 4-Mood Sheet")
-                      : (language === "zh" ? "🎨 切换画报拼贴" : "🎨 Collage Art")}
-                  </span>
+                  <span>📸 {language === "zh" ? "真人四格" : "Photo"}</span>
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setAvatarStyle("pixel")}
+                  className={`neo-style-pill ${avatarStyle === "pixel" ? "is-active" : ""}`}
+                >
+                  <span>👾 {language === "zh" ? "复古像素" : "Pixel"}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAvatarStyle("collage")}
+                  className={`neo-style-pill ${avatarStyle === "collage" ? "is-active" : ""}`}
+                >
+                  <span>🎨 {language === "zh" ? "画报拼贴" : "Collage"}</span>
+                </button>
+              </div>
 
-                {useCollageAvatar ? (
-                  /* Mode A: Neo-Brutalism & Editorial Collage Avatar */
+              {/* Xiao-A Avatar Frame */}
+              <div className="neo-avatar-frame">
+                {avatarStyle === "pixel" ? (
+                  <>
+                    <div className="pixel-crt-scanline" />
+                    <img
+                      src="/xiaoa-pixel-avatar.jpg"
+                      alt="小A 16-bit 像素风头像"
+                      className="neo-avatar-img neo-avatar-pixel"
+                    />
+                  </>
+                ) : avatarStyle === "collage" ? (
                   <img
                     src="/xiaoa-collage.jpg"
                     alt="小A 拼贴风头像"
                     className="neo-avatar-img"
                   />
                 ) : (
-                  /* Mode B: CSS-sliced 4-Mood Character Sheet */
                   <div
                     className="neo-avatar-sheet"
                     style={{
@@ -710,14 +727,16 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                   className="neo-avatar-status-strip"
                   style={{ backgroundColor: currentMood.badgeColor }}
                 >
-                  <span className="neo-status-text">
-                    {language === "zh" ? currentMood.status : currentMood.statusEn}
+                  <span className={`neo-status-text ${avatarStyle === "pixel" ? "pixel-font" : ""}`}>
+                    {avatarStyle === "pixel"
+                      ? (language === "zh" ? `[LV.99 PIXEL] ${currentMood.status}` : `[LV.99 PIXEL] ${currentMood.statusEn}`)
+                      : (language === "zh" ? currentMood.status : currentMood.statusEn)}
                   </span>
                 </div>
               </div>
 
-              {/* 4 Mood Selector Buttons */}
-              {!useCollageAvatar && (
+              {/* 4 Mood Selector Buttons (visible in sheet mode) */}
+              {avatarStyle === "sheet" && (
                 <div className="neo-mood-grid">
                   {XIAOA_MOODS.map((m, idx) => (
                     <button
@@ -733,6 +752,34 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                       <span>{language === "zh" ? m.label : m.labelEn}</span>
                     </button>
                   ))}
+                </div>
+              )}
+
+              {/* Pixel Art Download / Save Actions (visible in pixel mode) */}
+              {avatarStyle === "pixel" && (
+                <div style={{ display: "flex", gap: "6px", margin: "4px 0 10px" }}>
+                  <a
+                    href="/xiaoa-pixel-avatar.jpg"
+                    download="xiao-a-pixel-avatar.jpg"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="neo-mood-btn"
+                    style={{ flex: 1, textDecoration: "none", background: "#ffd600", color: "#111", fontSize: "11px", fontWeight: "800" }}
+                    title="下载高清 1:1 像素风头像"
+                  >
+                    <span>💾 下载像素头像</span>
+                  </a>
+                  <a
+                    href="/xiaoa-pixel-sheet.jpg"
+                    download="xiao-a-pixel-sheet.jpg"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="neo-mood-btn"
+                    style={{ flex: 1, textDecoration: "none", fontSize: "11px", fontWeight: "800" }}
+                    title="下载像素表情序列图"
+                  >
+                    <span>🖼️ 像素序列图</span>
+                  </a>
                 </div>
               )}
 

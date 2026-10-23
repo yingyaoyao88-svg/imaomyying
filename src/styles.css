@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap");
 
 /* ============================================================ */
 /* 1. COLOR SCHEMES & CSS VARIABLES                            */
@@ -970,6 +970,82 @@ button {
 
 .neo-chip {
   border: 1.5px solid var(--accent);
+}
+
+.neo-style-switcher-row {
+  display: flex;
+  gap: 6px;
+  margin: 10px 0 6px;
+}
+
+.neo-style-pill {
+  flex: 1;
+  padding: 6px 4px;
+  font-size: 11px;
+  font-weight: 800;
+  border: 2px solid #111111;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #111111;
+  box-shadow: 2px 2px 0px #111111;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.neo-style-pill:hover {
+  background: #ffd600;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #111111;
+}
+
+.neo-style-pill.is-active {
+  background: #111111;
+  color: #ffffff;
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+[data-theme="obsidian"] .neo-style-pill {
+  background: #181c26;
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+[data-theme="obsidian"] .neo-style-pill.is-active {
+  background: #f59e0b;
+  color: #000000;
+  border-color: #f59e0b;
+}
+
+.neo-avatar-pixel {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.pixel-crt-scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 5;
+  opacity: 0.45;
+}
+
+.pixel-font {
+  font-family: "Silkscreen", monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
 }
 
 .neo-avatar-frame {
