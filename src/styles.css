@@ -32,31 +32,31 @@
   --glow-2: rgba(244, 63, 94, 0.09);
 }
 
-/* Theme 2: 雅致纸境 · 暖白人文 (Warm Editorial Paper & Espresso) */
+/* Theme 2: 复古画报 · 新粗野主义 (Warm Editorial & Neo-Brutalism) */
 [data-theme="warm"] {
   color-scheme: light;
-  --bg: #f8f6f0;
-  --bg-gradient: radial-gradient(circle at 18% 18%, rgba(217, 119, 6, 0.08), transparent 45%),
-                 radial-gradient(circle at 85% 75%, rgba(180, 83, 9, 0.06), transparent 45%),
-                 linear-gradient(180deg, #faf8f3 0%, #ece6dc 100%);
-  --panel: rgba(255, 255, 255, 0.88);
+  --bg: #faf7ee;
+  --bg-gradient: radial-gradient(circle at 18% 18%, rgba(255, 90, 38, 0.08), transparent 45%),
+                 radial-gradient(circle at 85% 75%, rgba(255, 214, 0, 0.09), transparent 45%),
+                 linear-gradient(180deg, #faf7ee 0%, #f4ede0 100%);
+  --panel: #ffffff;
   --panel-elevated: #ffffff;
-  --panel-hover: #ffffff;
-  --border: rgba(90, 74, 58, 0.12);
-  --border-hover: rgba(217, 119, 6, 0.5);
-  --border-specular: rgba(255, 255, 255, 1);
-  --text: #1a1715;
-  --text-muted: #574e44;
-  --text-dim: #7f7366;
-  --accent: #d97706;
-  --accent-glow: rgba(217, 119, 6, 0.22);
-  --accent-soft: rgba(217, 119, 6, 0.1);
-  --accent-secondary: #c2410c;
-  --success: #059669;
-  --warning: #d97706;
-  --card-shadow: 0 16px 36px rgba(50, 40, 30, 0.06);
-  --glow-1: rgba(217, 119, 6, 0.09);
-  --glow-2: rgba(234, 88, 12, 0.07);
+  --panel-hover: #fffdf9;
+  --border: #111111;
+  --border-hover: #ff5a26;
+  --border-specular: #111111;
+  --text: #111111;
+  --text-muted: #374151;
+  --text-dim: #6b7280;
+  --accent: #ff5a26;
+  --accent-glow: rgba(255, 90, 38, 0.28);
+  --accent-soft: rgba(255, 90, 38, 0.12);
+  --accent-secondary: #ffd600;
+  --success: #10b981;
+  --warning: #ff5a26;
+  --card-shadow: 5px 5px 0px #111111;
+  --glow-1: rgba(255, 90, 38, 0.12);
+  --glow-2: rgba(255, 214, 0, 0.1);
 }
 
 /* Theme 3: 赛博薄荷 · 极光幻夜 (Frosted Mint & Platinum Slate) */
@@ -930,6 +930,225 @@ button {
 .pass-connect-btn:hover {
   background: var(--accent);
   color: #000;
+}
+
+/* ============================================================ */
+/* 5.1. NEO-BRUTALIST & EDITORIAL COLLAGE PASS STYLES           */
+/* ============================================================ */
+.neo-pass-card {
+  position: relative;
+  border: 3px solid var(--border);
+  box-shadow: 6px 6px 0px var(--border);
+  border-radius: 20px;
+  background: var(--panel-elevated);
+  padding: 22px 20px 20px;
+  overflow: visible;
+}
+
+[data-theme="warm"] .neo-pass-card {
+  border-color: #111111;
+  box-shadow: 6px 6px 0px #111111;
+  background: #ffffff;
+}
+
+.neo-tape-top {
+  position: absolute;
+  top: -12px;
+  right: 22px;
+  z-index: 10;
+  background: #ffd600;
+  color: #111111;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border: 2px solid #111111;
+  box-shadow: 2px 2px 0px #111111;
+  transform: rotate(-1.5deg);
+}
+
+.neo-chip {
+  border: 1.5px solid var(--accent);
+}
+
+.neo-avatar-frame {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  margin: 12px 0 10px;
+  border: 3px solid #111111;
+  box-shadow: 4px 4px 0px #111111;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fffdf9;
+}
+
+[data-theme="obsidian"] .neo-avatar-frame {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 4px 4px 0px #000000;
+  background: #11141c;
+}
+
+.neo-mode-toggle-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  background: #ffd600;
+  color: #111111;
+  border: 2px solid #111111;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0px #111111;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.neo-mode-toggle-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #111111;
+  background: #ffea79;
+}
+
+.neo-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.neo-avatar-sheet {
+  width: 100%;
+  height: 100%;
+  transition: background-position 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.neo-avatar-status-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 10px;
+  border-top: 2.5px solid #111111;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: #111111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  transition: background-color 0.25s ease;
+}
+
+.neo-mood-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 4px 0 10px;
+}
+
+.neo-mood-btn {
+  padding: 7px 6px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 2px solid #111111;
+  border-radius: 8px;
+  background: #fffdf9;
+  color: #111111;
+  box-shadow: 2px 2px 0px #111111;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neo-mood-btn:hover {
+  background: #ffd600;
+  color: #111111;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #111111;
+}
+
+.neo-mood-btn.is-active {
+  background: #111111;
+  color: #ffffff;
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+[data-theme="obsidian"] .neo-mood-btn {
+  background: #181c26;
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 2px 2px 0px #000;
+}
+
+[data-theme="obsidian"] .neo-mood-btn.is-active {
+  background: #f59e0b;
+  color: #000;
+  border-color: #f59e0b;
+}
+
+.neo-connect-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 2px solid #111111;
+  border-radius: 10px;
+  background: #ff5a26;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 3px 3px 0px #111111;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.neo-connect-btn:hover {
+  background: #e04b1a;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #111111;
+}
+
+.neo-connect-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #111111;
+}
+
+[data-theme="warm"] .bento-card {
+  border: 2.5px solid #111111;
+  box-shadow: 5px 5px 0px #111111;
+}
+
+[data-theme="warm"] .bento-card:hover {
+  box-shadow: 7px 7px 0px #111111;
+  transform: translate(-2px, -2px);
+}
+
+[data-theme="warm"] .btn-bento {
+  border: 2px solid #111111;
+  box-shadow: 3px 3px 0px #111111;
+}
+
+[data-theme="warm"] .btn-bento:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #111111;
+}
+
+[data-theme="warm"] .btn-bento:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #111111;
 }
 
 /* ============================================================ */

@@ -24,7 +24,7 @@ function AppFrame() {
   const isAdmin = location.pathname === "/admin";
   const { scrollYProgress } = useScroll();
   const [language, setLanguage] = useState("zh");
-  const [theme, setTheme] = useState("obsidian"); // 'obsidian' | 'warm' | 'aurora'
+  const [theme, setTheme] = useState("warm"); // 'warm' (复古画报 Neo-Brutalism) | 'obsidian' | 'aurora'
   const [qrModalOpen, setQrModalOpen] = useState(false);
 
   useEffect(() => {

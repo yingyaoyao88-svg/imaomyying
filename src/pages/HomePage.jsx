@@ -69,7 +69,53 @@ const fadeUp = {
   transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
 };
 
+const XIAOA_MOODS = [
+  {
+    id: 0,
+    label: "⚡ 专注构建",
+    labelEn: "⚡ Focus",
+    status: "FOCUS MODE // 正在写代码中",
+    statusEn: "FOCUS MODE // Coding & Shipping",
+    pos: "0% 50%",
+    badgeColor: "#FF5A26",
+  },
+  {
+    id: 1,
+    label: "💡 灵感发现",
+    labelEn: "💡 Eureka",
+    status: "EUREKA! // 发现神仙 AI 工具",
+    statusEn: "EUREKA! // Discovering Next-Gen AI",
+    pos: "33.33% 50%",
+    badgeColor: "#FFD600",
+  },
+  {
+    id: 2,
+    label: "🔥 硬核死磕",
+    labelEn: "🔥 Debug",
+    status: "DEBUGGING // 攻克复杂工作流",
+    statusEn: "DEBUGGING // Cracking Workflows",
+    pos: "66.66% 50%",
+    badgeColor: "#2563EB",
+  },
+  {
+    id: 3,
+    label: "✨ 完美交付",
+    labelEn: "✨ Shipped",
+    status: "SHIPPED // 新一期干货已发布",
+    statusEn: "SHIPPED // New Drop Live",
+    pos: "100% 50%",
+    badgeColor: "#10B981",
+  },
+];
+
 const THEMES = [
+  {
+    id: "warm",
+    label: "复古画报",
+    labelEn: "Warm Editorial",
+    color: "#ff5a26",
+    desc: "新粗野主义 · 暖米报纸质感 · 错位硬阴影与活力橙",
+  },
   {
     id: "obsidian",
     label: "琥珀曜岩",
@@ -78,18 +124,11 @@ const THEMES = [
     desc: "黑曜石高级暗调 · 暖金流光 · 奢感低反光",
   },
   {
-    id: "warm",
-    label: "雅致纸境",
-    labelEn: "Warm Linen",
-    color: "#d97706",
-    desc: "温润燕麦纸质 · 咖啡深灰 · 杂志排版美学",
-  },
-  {
     id: "aurora",
-    label: "赛博薄荷",
-    labelEn: "Cyber Mint",
+    label: "波普拼贴",
+    labelEn: "Pop Brutalism",
     color: "#10b981",
-    desc: "极客板岩黑 · 翡翠薄荷 · 晶莹电光青",
+    desc: "波普拼贴美学 · 电光柠檬黄 · 翡翠薄荷撞色",
   },
 ];
 
@@ -285,6 +324,9 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
   const [labCopied, setLabCopied] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
   const [qrModalOpen, setQrModalOpen] = useState(false);
+  const [moodIdx, setMoodIdx] = useState(0);
+  const [useCollageAvatar, setUseCollageAvatar] = useState(false);
+  const currentMood = XIAOA_MOODS[moodIdx];
 
   const handleOpenQr = () => {
     if (onOpenQrModal) {
@@ -599,10 +641,10 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
             </div>
           </motion.article>
 
-          {/* High-Design 3D Holographic Creator Pass Card */}
+          {/* High-Design Neo-Brutalist Creator Pass Card with Xiao-A Interactive Mood Sheet */}
           <div className="bento-card--pass-container">
             <motion.article
-              className="bento-card bento-card--pass"
+              className="bento-card bento-card--pass neo-pass-card"
               style={tiltStyle}
               onMouseMove={(e) => {
                 handleCardMouseMove(e);
@@ -611,33 +653,97 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
               onMouseLeave={handlePassMouseLeave}
               {...fadeUp}
             >
-              <div className="pass-holo-sheen" />
+              {/* Tape sticker at top */}
+              <div className="neo-tape-top">
+                <span>CREATOR ID PASS // 2026</span>
+              </div>
 
               <div className="pass-top-hardware">
-                <div className="pass-chip">
-                  <Cpu size={14} />
-                  <DecryptedText text="AI-PASS // 2026" speed={45} animateOn="both" />
+                <div className="pass-chip neo-chip">
+                  <Cpu size={13} />
+                  <DecryptedText text="AI-CREATOR // 小A" speed={45} animateOn="both" />
                 </div>
-                <span className="pass-serial">
+                <span className="pass-serial neo-serial">
                   <DecryptedText text="#AOMY-01 // VERIFIED" speed={40} animateOn="both" />
                 </span>
               </div>
 
-              <div className="pass-profile">
-                <div className="pass-avatar-wrap">
-                  <div className="pass-avatar-glow" />
-                  <div className="pass-avatar-inner">
-                    <span>小A</span>
-                  </div>
-                </div>
+              {/* Xiao-A Interactive Avatar Frame */}
+              <div className="neo-avatar-frame">
+                {/* Mode toggle sticker button */}
+                <button
+                  type="button"
+                  onClick={() => setUseCollageAvatar(!useCollageAvatar)}
+                  className="neo-mode-toggle-btn"
+                  title={language === "zh" ? "切换画报拼贴或四格表情" : "Toggle avatar mode"}
+                >
+                  <Sparkles size={11} />
+                  <span>
+                    {useCollageAvatar
+                      ? (language === "zh" ? "🔄 切回四格表情" : "🔄 4-Mood Sheet")
+                      : (language === "zh" ? "🎨 切换画报拼贴" : "🎨 Collage Art")}
+                  </span>
+                </button>
 
+                {useCollageAvatar ? (
+                  /* Mode A: Neo-Brutalism & Editorial Collage Avatar */
+                  <img
+                    src="/xiaoa-collage.jpg"
+                    alt="小A 拼贴风头像"
+                    className="neo-avatar-img"
+                  />
+                ) : (
+                  /* Mode B: CSS-sliced 4-Mood Character Sheet */
+                  <div
+                    className="neo-avatar-sheet"
+                    style={{
+                      backgroundImage: "url('/xiaoa-sheet.jpg')",
+                      backgroundSize: "400% 100%",
+                      backgroundPosition: currentMood.pos,
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  />
+                )}
+
+                {/* Bottom Tape Status Strip */}
+                <div
+                  className="neo-avatar-status-strip"
+                  style={{ backgroundColor: currentMood.badgeColor }}
+                >
+                  <span className="neo-status-text">
+                    {language === "zh" ? currentMood.status : currentMood.statusEn}
+                  </span>
+                </div>
+              </div>
+
+              {/* 4 Mood Selector Buttons */}
+              {!useCollageAvatar && (
+                <div className="neo-mood-grid">
+                  {XIAOA_MOODS.map((m, idx) => (
+                    <button
+                      key={m.id}
+                      type="button"
+                      onClick={() => setMoodIdx(idx)}
+                      className={`neo-mood-btn ${moodIdx === idx ? "is-active" : ""}`}
+                      style={{
+                        borderColor: moodIdx === idx ? m.badgeColor : undefined,
+                        boxShadow: moodIdx === idx ? `0 0 0 2px ${m.badgeColor}` : undefined,
+                      }}
+                    >
+                      <span>{language === "zh" ? m.label : m.labelEn}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              <div className="pass-profile neo-pass-profile">
                 <div className="pass-info">
                   <h3>{pick(creatorBio.name, language)}</h3>
                   <p className="pass-role">{pick(creatorBio.role, language)}</p>
                 </div>
               </div>
 
-              <div className="pass-meta-box">
+              <div className="pass-meta-box neo-meta-box">
                 <div className="pass-meta-row">
                   <span className="pass-meta-lbl">LOCATION</span>
                   <span className="pass-meta-val">China · Remote</span>
@@ -654,11 +760,11 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
 
               <button
                 type="button"
-                className="pass-connect-btn"
+                className="pass-connect-btn neo-connect-btn"
                 onClick={handleOpenQr}
               >
-                <QrCode size={13} />
-                <span>{language === "zh" ? "微信二维码: 扫码交个朋友" : "WeChat QR Code"}</span>
+                <QrCode size={14} />
+                <span>{language === "zh" ? "微信二维码: 扫码交个朋友" : "WeChat QR Code: 15038098595"}</span>
               </button>
             </motion.article>
           </div>
