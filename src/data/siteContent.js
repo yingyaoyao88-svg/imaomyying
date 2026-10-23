@@ -162,13 +162,4 @@ export const creatorHighlights = [
       en: "Mobile-first English practice app with phonics, textbook dialogues, and audio pronunciation.",
     },
   },
-  {
-    number: "06",
-    title: { zh: "AOMYYING 个人主页与作品集", en: "AOMYYING Portfolio Website" },
-    tag: { zh: "已上线 / 个人品牌", en: "Personal Brand / Open Source" },
-    desc: {
-      zh: "融合 Linear 工业黑曜石极客风与 Rauno 拟态微动效的个人官网，React 18 + Vite + Tailwind CSS。",
-      en: "Aesthetic developer portfolio with Linear Obsidian style & Rauno micro-interactions.",
-    },
-  },
 ];
