@@ -3,3 +3,4 @@ export { XiaoACoverShowcase } from "./XiaoACoverShowcase";
 export { WeChatPublisherShowcase } from "./WeChatPublisherShowcase";
 export { TeachingToolsShowcase } from "./TeachingToolsShowcase";
 export { PortfolioSiteShowcase } from "./PortfolioSiteShowcase";
+export { ScenePracticeShowcase } from "./ScenePracticeShowcase";

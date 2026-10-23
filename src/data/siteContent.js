@@ -128,6 +128,15 @@ export const creatorHighlights = [
   },
   {
     number: "02",
+    title: { zh: "声幕练习 · 影视听说训练", en: "Scene Practice · Cinema English" },
+    tag: { zh: "已上线 / 独立产品", en: "Live Web App" },
+    desc: {
+      zh: "用一段好戏练会一句地道英语，精选影视原声切片与30秒微练，打通原声盲听到场景实战表达。",
+      en: "Cinema-based English listening & speech trainer featuring authentic movie clips & 30s shadowing loops.",
+    },
+  },
+  {
+    number: "03",
     title: { zh: "小红书 AI 封面生成系统", en: "XHS AI Cover Generator" },
     tag: { zh: "自用提效 / 孵化中", en: "Creator Tool" },
     desc: {
@@ -136,7 +145,7 @@ export const creatorHighlights = [
     },
   },
   {
-    number: "03",
+    number: "04",
     title: { zh: "Obsidian 微信排版发布插件", en: "Obsidian WeChat Publisher" },
     tag: { zh: "开源工具 / 插件", en: "Open Source Plugin" },
     desc: {
@@ -145,7 +154,7 @@ export const creatorHighlights = [
     },
   },
   {
-    number: "04",
+    number: "05",
     title: { zh: "AomyYing 英语练习小工具", en: "AomyYing Teaching Tools" },
     tag: { zh: "已上线 / 教学应用", en: "Live Web App" },
     desc: {
@@ -154,7 +163,7 @@ export const creatorHighlights = [
     },
   },
   {
-    number: "05",
+    number: "06",
     title: { zh: "AOMYYING 个人主页与作品集", en: "AOMYYING Portfolio Website" },
     tag: { zh: "已上线 / 个人品牌", en: "Personal Brand / Open Source" },
     desc: {

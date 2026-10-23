@@ -190,9 +190,101 @@ export const projects = [
     },
   },
   {
-    slug: "xhs-cover-gen",
+    slug: "scene-practice",
     isFlagship: false,
     number: "02",
+    accent: "#f97316",
+    title: {
+      zh: "声幕练习 · 影视英语听说训练",
+      en: "Scene Practice · Cinema English",
+    },
+    subtitle: {
+      zh: "用一段好戏练会一句英语，面向场景化表达的影视原声听说训练应用",
+      en: "Master authentic English through movie scenes · 30s audio & speech loop",
+    },
+    category: {
+      zh: "独立产品 · 影视听说训练",
+      en: "Language Product · Cinema Immersion",
+    },
+    excerpt: {
+      zh: "针对成人自学者“背了大量单词却听不懂母语真实语速、遇到真实场景不敢开口”的痛点打造。精选影视原声切片与生活高频场景，每次专注攻克一个地道表达，完成原声盲听、慢速精听、影子跟读到交流场景迁移闭环。",
+      en: "A cinema-based listening & speaking trainer designed for adult learners to master authentic expressions from film clips (like Friends) with native audio shadowing and real-world scenario practice.",
+    },
+    tags: {
+      zh: ["Next.js", "影视原声", "老友记英语", "口语跟读", "场景化训练", "在线应用"],
+      en: ["Next.js", "Movie English", "Speech Shadowing", "Friends Series", "Scenario Practice", "Web App"],
+    },
+    demoUrl: "https://scene-practice.vercel.app/scenes",
+    stats: [
+      { label: { zh: "训练颗粒度", en: "Duration" }, value: "30 秒影视微练" },
+      { label: { zh: "场景覆盖", en: "Scenarios" }, value: "生活/职场/老友记" },
+      { label: { zh: "核心闭环", en: "Method" }, value: "盲听→跟读→迁移" },
+    ],
+    overview: {
+      zh: [
+        "「声幕练习（Scene Practice）」是我针对英语口语与听力实战痛点，独立开发的一款影视场景听说训练应用。",
+        "网络上有大量影视素材，但大多数人看剧往往沦为“看字幕找乐子”，关掉字幕依然听不清真实语速中的连读与弱读。到了真实生活场景（如咖啡店点单、初次破冰、职场发言），依然不敢开口。「声幕练习」的核心理念是：『用一段好戏，练会一句英语』。每次只聚焦一个 30 秒高质感片段，彻底吃透一个真实地道表达。",
+      ],
+      en: [
+        "Scene Practice is an independent language-learning web app crafted to solve the disconnect between textbook English and authentic spoken communication.",
+        "Rather than passively watching entire episodes with subtitles, learners engage with targeted 30-second cinema scenes to dissect native pronunciation, master authentic phrases, and practice vocal shadowing with instantaneous browser speech feedback.",
+      ],
+    },
+    problem: {
+      zh: [
+        "输入与实战脱节：背了上万词汇，到了真实场景（如海外点单或外企对话）依然语塞，缺乏肌肉记忆与语感。",
+        "母语真实语速屏障：美剧与真实生活中存在大量连读、弱读与吞音，纯文本学习者离开字幕很难抓取核心信息。",
+        "缺乏低压力的开口环境：传统口语课成本高且容易紧张，日常缺乏短时长、免登录、随开随练的影子跟读工具。",
+      ],
+      en: [
+        "Classroom disconnect: Vocabulary knowledge fails in spontaneous real-world situations like ordering coffee or casual greetings.",
+        "Native speech hurdles: Natural conversation is dense with contractions, reductions, and linking sounds that baffle text-only learners.",
+        "Speaking anxiety & friction: Traditional 1-on-1 tutoring feels high-pressure, lacking low-friction 30-second daily practice loops.",
+      ],
+    },
+    solution: {
+      zh: [
+        "30 秒影视原声微课：精选《老友记 Friends》及原创生活场景（咖啡店、校园社交、职场演示等），把复杂语料切片为高吸收率的微练习。",
+        "原声盲听与逐句精析：提供 0.75x ~ 1.25x 变速原声音频，搭配双语对齐与连读重点标注，彻底拆解母语听感。",
+        "影子跟读与浏览器语音即时反馈：借助 Web Speech API 与原声波形引导，支持随时随地随学随练，建立自然发音的肌肉记忆。",
+        "科学复习与场景迁移：内置轻量记忆曲线台账，追踪学习中与已掌握的表达，支持场景化举一反三与实战迁移。",
+      ],
+      en: [
+        "30-Second Micro-Lessons: Handpicked clips from Friends and original real-world scenarios (cafes, campus, office) targeting one core idiom at a time.",
+        "Auditory Dissection: Multi-speed playback (0.75x-1.25x), dual-language subtitles, and phonetics breakdown for connected speech.",
+        "Vocal Shadowing: Instant browser speech synthesis feedback with guided sentence pacing to build oral muscle memory.",
+        "Spaced Review & Transfer: Built-in learning ledger to track active/mastered expressions and facilitate contextual transfer.",
+      ],
+    },
+    techStack: [
+      "Next.js",
+      "Turbopack",
+      "React",
+      "Web Speech API",
+      "Vercel Edge",
+      "Tailwind CSS",
+    ],
+    features: {
+      zh: [
+        { title: "30 秒影视沉浸微课", desc: "每次专注一个精选影视切片，把原声盲听、句法解析到跟读发音全流程控制在 30 秒至 1 分钟内。" },
+        { title: "真实生活高频场景库", desc: "涵盖咖啡店点单纠纷、校园初次社交、职场极简站会交接等核心场景，即学即用。" },
+        { title: "老友记经典专区", desc: "收录经典美剧原声语料与母语文化背景解读，在情景欢笑中领略自然俚语。" },
+        { title: "影子跟读与发音磨耳朵", desc: "支持慢速精听、逐句复读、语音对比与原声波形节奏感知，打造地道语调。" },
+        { title: "科学复习遗忘曲线", desc: "内置智能记忆台账，追踪学习中与已掌握的表达，按周期提醒滚动复习。" },
+      ],
+      en: [
+        { title: "30s Cinema Micro-Lessons", desc: "Bite-sized immersion focusing on one expression per session from blind listening to shadowing." },
+        { title: "Everyday Scenario Library", desc: "Covers essential situations: coffee shop ordering, campus social icebreakers, workplace standups." },
+        { title: "Friends TV Show Special", desc: "Handpicked scenes from Friends with cultural context and natural slang." },
+        { title: "Speech Shadowing & Loop", desc: "Adjustable playback speed, sentence-by-sentence looping, and browser voice guidance." },
+        { title: "Spaced Repetition Review", desc: "Built-in review system tracking active learning expressions and mastered idioms." },
+      ],
+    },
+  },
+  {
+    slug: "xhs-cover-gen",
+    isFlagship: false,
+    number: "03",
     accent: "#ff2442",
     title: {
       zh: "小红书 AI 封面生成系统",
@@ -278,7 +370,7 @@ export const projects = [
   {
     slug: "obsidian-wechat-publisher",
     isFlagship: false,
-    number: "03",
+    number: "04",
     accent: "#07c160",
     title: {
       zh: "Obsidian 微信公众号排版插件",
@@ -358,7 +450,7 @@ export const projects = [
   {
     slug: "teaching-tools",
     isFlagship: false,
-    number: "04",
+    number: "05",
     accent: "#10b981",
     title: {
       zh: "AomyYing 英语练习小工具",
@@ -446,7 +538,7 @@ export const projects = [
   {
     slug: "portfolio-site",
     isFlagship: false,
-    number: "05",
+    number: "06",
     accent: "#6366f1",
     title: {
       zh: "AOMYYING AI 个人主页与作品集",
@@ -549,6 +641,19 @@ export const githubRepositories = [
     isFlagship: true,
   },
   {
+    name: "scene-practice",
+    title: { zh: "声幕练习 · 影视英语听说训练", en: "Scene Practice · Cinema English" },
+    desc: {
+      zh: "用一段好戏练会一句英语，面向场景化表达的影视原声听说训练应用，Next.js + Vercel Edge。",
+      en: "Cinema-based English listening & speech trainer featuring authentic movie clips & 30s shadowing loops.",
+    },
+    language: "TypeScript / Next.js",
+    langColor: "#3178c6",
+    stars: 0,
+    url: "https://scene-practice.vercel.app/scenes",
+    demoUrl: "https://scene-practice.vercel.app/scenes",
+  },
+  {
     name: "obsidian-wechat-publisher",
     title: { zh: "Obsidian 微信公众号排版与发布工作台", en: "Obsidian WeChat Publisher" },
     desc: {
@@ -609,6 +714,9 @@ export function getProjectBySlug(slug) {
   }
   if (slug === "imaomyying") {
     return projects.find((project) => project.slug === "portfolio-site");
+  }
+  if (slug === "scene-practice" || slug === "scene-practice-app") {
+    return projects.find((project) => project.slug === "scene-practice");
   }
   return projects.find((project) => project.slug === slug);
 }

@@ -5956,6 +5956,128 @@ button {
   }
 }
 
+/* ============================================================ */
+/* SCENE PRACTICE (声幕练习) SHOWCASE STYLES                   */
+/* ============================================================ */
+
+.scene-selector-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+}
+
+.scene-selector-ribbon::-webkit-scrollbar {
+  display: none;
+}
+
+.scene-select-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--panel-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.scene-select-chip:hover {
+  color: var(--text);
+  border-color: rgba(249, 115, 22, 0.4);
+  transform: translateY(-1px);
+}
+
+.scene-select-chip.active {
+  background: rgba(249, 115, 22, 0.12);
+  border-color: #f97316;
+  color: var(--text);
+  box-shadow: 0 2px 10px rgba(249, 115, 22, 0.18);
+}
+
+.scene-chip-title {
+  font-weight: 700;
+}
+
+.scene-chip-tag {
+  font-size: 10.5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+[data-theme="warm"] .scene-chip-tag {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.sub-toggle-btn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sub-toggle-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sub-toggle-btn.active {
+  background: #f97316;
+  border-color: #f97316;
+  color: #fff;
+  font-weight: 700;
+}
+
+.scene-dialogue-card:hover {
+  border-color: rgba(249, 115, 22, 0.5) !important;
+}
+
+.line-audio-btn:hover {
+  background: rgba(249, 115, 22, 0.3) !important;
+  transform: scale(1.08);
+}
+
+.feature-callout-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--panel-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.feature-callout-card strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.feature-callout-card p {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+
 
 
 

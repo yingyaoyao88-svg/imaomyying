@@ -23,6 +23,7 @@ import {
   WeChatPublisherShowcase,
   TeachingToolsShowcase,
   PortfolioSiteShowcase,
+  ScenePracticeShowcase,
 } from "../components/showcases";
 
 
@@ -158,6 +159,9 @@ export function ProjectDetailPage({ language }) {
           )}
           {(project.slug === "teaching-tools" || project.slug === "AomyYing-teaching-tools") && (
             <TeachingToolsShowcase language={language} />
+          )}
+          {(project.slug === "scene-practice" || project.slug === "scene-practice-app") && (
+            <ScenePracticeShowcase language={language} />
           )}
           {(project.slug === "portfolio-site" || project.slug === "imaomyying") && (
             <PortfolioSiteShowcase language={language} />
