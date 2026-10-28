@@ -57,6 +57,7 @@ import {
   ShinyText,
   StarBorder,
 } from "../components/reactbits";
+import { ArticleFolderStand } from "../components/ArticleFolderStand";
 
 const pick = (value, language) =>
   value && typeof value === "object" && !Array.isArray(value) && value[language] !== undefined
@@ -1296,7 +1297,7 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
           </div>
 
           {/* ============================================================ */}
-          {/* FEATURED ARTICLES & ESSAYS (精选文章与深度专栏)               */}
+          {/* FEATURED ARTICLES & ESSAYS (精选文章与深度专栏 - 文件夹展示台) */}
           {/* ============================================================ */}
           <div className="articles-subsection" style={{ marginTop: "44px" }}>
             <div className="section-head" style={{ marginBottom: "20px" }}>
@@ -1310,67 +1311,13 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
               <h3>{language === "zh" ? "小A的精选长文与技术复盘" : "Featured Articles & DevLogs"}</h3>
               <p>
                 {language === "zh"
-                  ? "在 X (@Aomyying) 与全网沉淀的 AI 落地实操指南、独立开发复盘与成人英语自学方法论："
-                  : "Curated long-form guides, language acquisition frameworks, and build-in-public reflections."}
+                  ? "在 X (@Aomyying) 与全网沉淀的 AI 落地实操指南、独立开发复盘与成人英语自学方法论（可从下方档案盒直接抽取）："
+                  : "Curated long-form guides, language acquisition frameworks, and build-in-public reflections (pull from the dossier below):"}
               </p>
             </div>
 
-            <div className="articles-bento-grid">
-              {featuredArticles.map((art, idx) => (
-                <motion.article
-                  key={art.id}
-                  className="bento-card bento-card--article neo-article-card"
-                  onMouseMove={handleCardMouseMove}
-                  {...fadeUp}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                >
-                  <div className="article-card-header">
-                    <span className="badge-pill badge-pill--tech">
-                      {pick(art.category, language)}
-                    </span>
-                    <div className="article-meta-info">
-                      <span className="article-platform-tag">{pick(art.platform, language)}</span>
-                      <span className="article-date">{art.date}</span>
-                    </div>
-                  </div>
-
-                  <h4 className="article-title">
-                    <a href={art.url} target="_blank" rel="noreferrer">
-                      {pick(art.title, language)}
-                    </a>
-                  </h4>
-
-                  <p className="article-excerpt">
-                    {pick(art.excerpt, language)}
-                  </p>
-
-                  <div className="article-tags">
-                    {art.tags.slice(0, 4).map((tag) => (
-                      <span key={tag} className="tag-chip">#{tag}</span>
-                    ))}
-                  </div>
-
-                  <div className="article-card-footer">
-                    <div className="article-author-pill">
-                      <svg viewBox="0 0 24 24" width={13} height={13} fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                      </svg>
-                      <span>{art.author}</span>
-                    </div>
-
-                    <a
-                      href={art.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn-bento btn-bento--article-read"
-                    >
-                      <span>{language === "zh" ? "在 X 阅读全文" : "Read on X"}</span>
-                      <ArrowUpRight size={13} />
-                    </a>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
+            {/* 文件夹抽取展示台组件 */}
+            <ArticleFolderStand language={language} theme={theme} />
           </div>
         </section>
 
