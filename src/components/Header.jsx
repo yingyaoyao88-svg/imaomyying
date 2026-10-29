@@ -6,6 +6,7 @@ import { portfolioContent } from "../data/projects";
 
 const navItems = [
   { key: "projects", target: "projects" },
+  { key: "brands", target: "brands" },
   { key: "media", target: "media" },
   { key: "lab", target: "lab" },
   { key: "about", target: "about" },
@@ -97,7 +98,7 @@ export function Header({
               className="site-header__link"
               onClick={() => handleScroll(item.target)}
             >
-              {copy[item.key]}
+              {item.key === "brands" ? (language === "zh" ? "主理品牌" : "My Brand") : copy[item.key]}
             </button>
           ))}
         </nav>
@@ -163,7 +164,7 @@ export function Header({
               className="site-header__mobile-link"
               onClick={() => handleScroll(item.target)}
             >
-              {copy[item.key]}
+              {item.key === "brands" ? (language === "zh" ? "主理品牌" : "My Brand") : copy[item.key]}
             </button>
           ))}
           <div className="mobile-theme-row">

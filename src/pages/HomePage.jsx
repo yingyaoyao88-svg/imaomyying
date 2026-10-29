@@ -58,6 +58,7 @@ import {
   StarBorder,
 } from "../components/reactbits";
 import { ArticleFolderStand } from "../components/ArticleFolderStand";
+import { SheTalkBrand } from "../components/SheTalkBrand";
 
 const pick = (value, language) =>
   value && typeof value === "object" && !Array.isArray(value) && value[language] !== undefined
@@ -1194,6 +1195,8 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
         {/* ============================================================ */}
         {/* ROW 3: CREATOR PRESENCE & SOCIAL MEDIA MATRIX                */}
         {/* ============================================================ */}
+        <SheTalkBrand language={language} />
+
         <section className="bento-section" id="media">
           <div className="section-head">
             <span className="section-eyebrow">
