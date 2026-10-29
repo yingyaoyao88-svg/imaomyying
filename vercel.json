@@ -1,5 +1,15 @@
 {
   "framework": "vite",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/english",
+      "destination": "https://english-learning-hub-ying-s-projects5.vercel.app/english"
+    },
+    {
+      "source": "/english/:path*",
+      "destination": "https://english-learning-hub-ying-s-projects5.vercel.app/english/:path*"
+    }
+  ]
 }

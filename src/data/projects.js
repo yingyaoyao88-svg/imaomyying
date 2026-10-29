@@ -124,7 +124,7 @@ export const projects = [
       en: ["Next.js", "Cloudflare D1", "Drizzle ORM", "English Learning", "Open Source", "Edge"],
     },
     githubUrl: "https://github.com/yingyaoyao88-svg/english-learning-hub",
-    demoUrl: "https://github.com/yingyaoyao88-svg/english-learning-hub",
+    demoUrl: "https://imaomyying.com/english",
     stats: [
       { label: { zh: "涵盖模块", en: "Modules" }, value: "5+ 专项分类" },
       { label: { zh: "架构模式", en: "Architecture" }, value: "Edge Fullstack" },
