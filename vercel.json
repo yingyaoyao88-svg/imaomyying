@@ -16,6 +16,14 @@
       "destination": "/api/wechat"
     },
     {
+      "source": "/api/pay/:path*",
+      "destination": "/api/pay"
+    },
+    {
+      "source": "/api/quota/:path*",
+      "destination": "/api/quota"
+    },
+    {
       "source": "/english",
       "destination": "https://english-learning-hub-ying-s-projects5.vercel.app/english"
     },
