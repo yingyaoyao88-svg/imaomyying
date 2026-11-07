@@ -4,6 +4,18 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/globaltalk",
+      "destination": "/talk"
+    },
+    {
+      "source": "/globaltalk/:path*",
+      "destination": "/talk/:path*"
+    },
+    {
+      "source": "/api/wechat/:path*",
+      "destination": "/api/wechat"
+    },
+    {
       "source": "/english",
       "destination": "https://english-learning-hub-ying-s-projects5.vercel.app/english"
     },

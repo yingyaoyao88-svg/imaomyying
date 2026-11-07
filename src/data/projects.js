@@ -12,7 +12,7 @@ export const portfolioContent = {
       projects: "精选项目",
       media: "自媒体矩阵",
       lab: "创意工坊",
-      about: "关于我",
+      about: "关于小A",
       submit: "共建投稿",
       contact: "联系合作",
       builder: "AI Creator & Builder",
@@ -56,7 +56,7 @@ export const portfolioContent = {
       projects: "Projects",
       media: "Media Hub",
       lab: "Creator Lab",
-      about: "About Me",
+      about: "About Xiao-A",
       submit: "Submit",
       contact: "Contact",
       builder: "AI Creator & Builder",
@@ -99,9 +99,100 @@ export const portfolioContent = {
 
 export const projects = [
   {
-    slug: "english-learning-hub",
+    slug: "globaltalk-ai",
     isFlagship: true,
     number: "01",
+    accent: "#6366f1",
+    title: {
+      zh: "GlobalTalk AI · 外贸与TikTok电商口语私教",
+      en: "GlobalTalk AI · Trade & TikTok Speaking Coach",
+    },
+    subtitle: {
+      zh: "7天通关外贸商战谈判与TikTok Shop带货，免费接入超拟真微软神经网络语音",
+      en: "Master cross-border trade negotiations & TikTok Shop live selling with neural audio",
+    },
+    category: {
+      zh: "AI 实战应用 · 口语私教系统",
+      en: "AI Practical App · Speaking Simulator",
+    },
+    excerpt: {
+      zh: "针对外贸业务员与跨境电商主播的实战口语痛点，提供 7 国拟真买手长途电话对战舱、TikTok 移动直播间、全品类带货军火库与 5 阶段黄金控盘剧本。内置微软 Edge 免费高保真神经网络美音，告别机械电音，支持微信扫码登录与多维诊断病历单导出。",
+      en: "A professional AI spoken English simulator for cross-border trade negotiators and TikTok Shop live anchors. Features 7-day realistic overseas buyer call simulations, TikTok live selling studio, vertical product arsenal, and free Microsoft Edge Neural audio.",
+    },
+    tags: {
+      zh: ["React 19", "Vite", "Edge Neural TTS", "外贸商务英语", "TikTok带货", "大模型流式对话", "微信登录"],
+      en: ["React 19", "Vite", "Edge Neural TTS", "Trade English", "TikTok Shop", "LLM Streaming", "WeChat Auth"],
+    },
+    githubUrl: "https://github.com/yingyaoyao88-svg/globaltalk-ai",
+    demoUrl: "/talk/",
+    stats: [
+      { label: { zh: "实战场景", en: "Scenarios" }, value: "7天进阶 + TikTok专区" },
+      { label: { zh: "语音引擎", en: "Voice Engine" }, value: "Edge Neural (免费超拟真)" },
+      { label: { zh: "交互拟真", en: "Simulation" }, value: "iPhone 16 Pro 电话舱" },
+    ],
+    overview: {
+      zh: [
+        "GlobalTalk AI 是专为外贸从业人员、跨境电商卖家与出海主播打造的沉浸式实战口语私教系统。",
+        "不同于市面上枯燥背单词、纸上谈兵的传统英语 App，GlobalTalk AI 采用全息情境演练模式：模拟美国中型建材连锁采购总监等 7 位外商越洋突袭来电，真实还原 FOB 砍价、付款账期拉锯、开模打样等刺刀见红的高压谈判场景，并配备 TikTok 移动端直播间带货实战舱。"
+      ],
+      en: [
+        "GlobalTalk AI is an immersive business English training simulator tailored for foreign trade professionals and TikTok cross-border livestreamers.",
+        "Unlike generic vocabulary apps, GlobalTalk AI simulates high-stakes negotiations with 7 overseas buyers (FOB pricing, payment terms, quality disputes) and real TikTok Shop live selling routines with neural voice output."
+      ],
+    },
+    problem: {
+      zh: [
+        "中式英语不敢开口：业务员邮件写得好，但面对外商越洋电话突袭砍价时大脑空白、词不达意。",
+        "缺乏谈判控盘心法：往往盲目降价妥协，不懂用条件置换（如增加起订量、缩短交期）进行有效防守。",
+        "传统 AI 语音机械刺耳：很多口语工具合成语音语调僵硬、发音生硬，破坏对话真实感。"
+      ],
+      en: [
+        "Fear of speaking on calls: Sales reps write good emails but freeze during sudden buyer phone negotiations.",
+        "Lack of negotiation strategy: Giving discounts too easily without conditioning on order volume or lead times.",
+        "Robotic AI voices: Standard TTS engines sound artificial and lack emotional nuance."
+      ],
+    },
+    solution: {
+      zh: [
+        "拟真 iPhone 16 Pro 商务来电模拟舱：支持接听、同传双语字幕、买手潜台词透视与魔鬼考官打断机制。",
+        "TikTok 电商带货直播舱与垂直品类军火库：专为水杯、3C、美妆、服饰、箱包等品类量身打造 5 阶段黄金控盘话术与 80+ 句实战爆单金句，支持全品类自定义商品脚本一键生成。",
+        "100% 免费接入微软 Edge 神经网络超保真美音：包含 Jenny、Guy、Christopher、Ava 等影院级自然原声，彻底告别机械味。"
+      ],
+      en: [
+        "iPhone 16 Pro Call Simulator: Realistic incoming buyer calls with live subtitles, subtext reveal, and coach interrupts.",
+        "TikTok Live Studio & Product Arsenal: 5-stage selling framework and 80+ high-converting lines across drinkware, electronics, beauty, and apparel.",
+        "Free Microsoft Edge Neural Audio: Cinema-grade human voices with breathing, cadence, and emotion."
+      ],
+    },
+    techStack: [
+      "React 19",
+      "Vite 8",
+      "Microsoft Edge Neural TTS (msedge-tts)",
+      "Node.js Backend Gateway",
+      "Tailwind CSS (Executive Dark Pro)",
+      "Lucide Icons",
+      "WeChat OAuth & QR Auth",
+    ],
+    features: {
+      zh: [
+        { title: "7 天外贸推拉博弈实战营", desc: "涵盖探底施压、价值锚定、僵持试探、破局互换到最终闭环签约全流程。" },
+        { title: "TikTok Live 直播间实训舱", desc: "移动端带货界面、1号小黄车、公屏买手实时弹幕与 5 阶段提词器联动练习。" },
+        { title: "全品类垂直爆单军火库", desc: "水杯、3C、美妆、服装、箱包专用品类台词，加全品类自由商品剧本生成器。" },
+        { title: "多维诊断病历单与微信登录", desc: "发音评分、攻防得失复盘、一键生成高清诊断海报，支持微信扫码登录保存进度。" }
+      ],
+      en: [
+        { title: "7-Day Trade Negotiation Flow", desc: "Full coverage from initial price push to value anchoring and deal closing." },
+        { title: "TikTok Live Selling Simulator", desc: "Vertical mobile live room with cart, live viewer comments, and 5-stage prompter." },
+        { title: "Vertical Product Arsenal", desc: "Tailored phrases for tumblers, electronics, beauty, bags, plus unlimited custom products." },
+        { title: "Clinical Diagnostic Report & WeChat Auth", desc: "Multi-dimensional performance analysis and downloadable poster." }
+      ],
+    },
+  },
+
+  {
+    slug: "english-learning-hub",
+    isFlagship: true,
+    number: "02",
     accent: "#38bdf8",
     title: {
       zh: "英语学习资源导航站",

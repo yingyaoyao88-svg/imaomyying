@@ -38,6 +38,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { TravelFootprints } from "../components/TravelFootprints";
 import {
   githubRepositories,
   portfolioContent,
@@ -1405,7 +1406,7 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
           <div className="section-head">
             <span className="section-eyebrow">
               <Compass size={14} />
-              <span>{language === "zh" ? "关于我" : "About Me"}</span>
+              <span>{language === "zh" ? "关于小A" : "About Xiao-A"}</span>
             </span>
             <h2>{language === "zh" ? "为什么做自媒体与独立开发？" : "Why I Build & Share"}</h2>
           </div>
@@ -1467,6 +1468,9 @@ export function HomePage({ language, theme = "obsidian", onSelectTheme, onOpenQr
                 ))}
               </div>
             </motion.article>
+          </div>
+          <div className="travel-footprints-section">
+            <TravelFootprints language={language} />
           </div>
         </section>
 

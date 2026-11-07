@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="小 A · 风经过的地方，浅色撕纸风格的 3D 翻页精装相册。" />
+    <title>小 A · 风经过的地方</title>
+    <script type="module" crossorigin src="/album/assets/index-IzR-XByY.js"></script>
+    <link rel="stylesheet" crossorigin href="/album/assets/index-Dva92_6e.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <canvas id="book-scene" aria-label="可以点击或滑动翻页的三维精装相册"></canvas>
+      <nav class="library" aria-label="选择相册" id="library"></nav>
+      <div class="reader-controls" aria-label="翻页控制">
+        <button class="page-button" id="previous-page" type="button" aria-label="上一页">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button id="autoplay" class="autoplay-button" type="button" aria-pressed="false">自动翻阅</button>
+        <button class="page-button" id="next-page" type="button" aria-label="下一页">
+          <span aria-hidden="true">›</span>
+        </button>
+        <span class="sr-only" id="page-state" aria-live="polite">封面</span>
+      </div>
+      <div class="loading-card" id="loading-card" role="status" aria-live="polite" aria-hidden="true" hidden>
+        <span class="loading-pulse"></span>
+        <span class="sr-only" id="loading-copy">正在准备相册</span>
+      </div>
+    </main>
+  </body>
+</html>
