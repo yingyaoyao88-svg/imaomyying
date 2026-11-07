@@ -57,7 +57,16 @@ export default async function handler(req, res) {
   }
 
   try {
-    const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch (err) {
+        body = {};
+      }
+    }
+    if (!body || typeof body !== 'object') body = {};
+
     const { text, role, config } = body;
     const ttsEngine = config?.ttsEngine || 'edge';
     const activeKey = config?.apiKey || process.env.OPENAI_API_KEY || '';
